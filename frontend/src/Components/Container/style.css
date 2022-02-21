@@ -1,0 +1,22 @@
+.container {
+  width: 100%;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.container_data{
+    width: 650px;
+    /* min-height: 100vh; */
+    width: 650px;
+    padding: 20px;
+    background: red;
+}
+
+
+@media (max-width: 767px) {
+  .container_data {
+    height: 100%;
+    width: 100%;
+  }
+}
