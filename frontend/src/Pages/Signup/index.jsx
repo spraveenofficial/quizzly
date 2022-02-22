@@ -2,32 +2,18 @@ import { motion } from "framer-motion";
 import Container from "../../Components/Container/index";
 import Input from "../../Components/Input/index";
 import { Link } from "react-router-dom";
+import animation from "../../helpers/animation";
 import "./style.css";
 import Toast from "../../Components/Toast";
 import { useState } from "react";
 export default function Signup() {
   const [toast, setToast] = useState(false);
-  const cardItems = {
-    hidden: {
-      y: -100,
-      opacity: 0,
-    },
-    show: {
-      y: 0,
-      opacity: 1,
-      transition: {
-        duration: 1,
-        type: "tween",
-        ease: "easeOut",
-      },
-    },
-  };
   return (
     <Container>
       <motion.div
         initial="hidden"
         animate="show"
-        variants={cardItems}
+        variants={animation}
         exit="hidden"
         className="logincontainer"
       >

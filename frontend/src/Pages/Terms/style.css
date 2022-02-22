@@ -1,0 +1,10 @@
+.terms-and-condition {
+  margin: 0 0.625rem;
+  text-align: justify;
+}
+.tandcheckbox {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  margin: 1.2rem 0;
+}

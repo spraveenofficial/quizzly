@@ -5,32 +5,12 @@ import data from "./data.json";
 import Toast from "../../Components/Toast";
 import "./style.css";
 import { motion } from "framer-motion";
+import {
+  categoryVariant,
+  categoryItemVariants,
+} from "../../helpers/categoryAnimation";
 const Home = () => {
   const [toast, setToast] = useState(false);
-  const categoryVariant = {
-    hidden: { opacity: 0 },
-    show: {
-      opacity: 1,
-      transition: {
-        duration: 1,
-        type: "tween",
-        staggerChildren: 0.2,
-      },
-    },
-  };
-  const categoryItemVariants = {
-    hidden: {
-      y: -100,
-      opacity: 0,
-    },
-    show: {
-      y: 0,
-      opacity: 1,
-      transition: {
-        duration: 1,
-      },
-    },
-  };
   return (
     <Container>
       <motion.div variants={categoryVariant} initial="hidden" animate={"show"}>

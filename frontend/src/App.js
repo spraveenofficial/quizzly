@@ -5,6 +5,7 @@ import Navbar from "./Components/Navbar/index";
 import Signup from "./Pages/Signup/index";
 import Login from "./Pages/Login";
 import LeaderBoard from "./Pages/LeaderBoard";
+import Terms from "./Pages/Terms";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
       <Route path="/signup" element={<Signup />} />
       <Route path="/login" element={<Login />} />
       <Route path="/leaderboard" element={<LeaderBoard />} />
+      <Route path="/terms" element={<Terms />} />
     </Routes>
   </Router>
   );
