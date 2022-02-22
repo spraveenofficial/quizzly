@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
-import Container from "../../Components/Container";
-import Input from "../../Components/Input";
+import Container from "../../Components/Container/index";
+import Input from "../../Components/Input/index";
 import { Link } from "react-router-dom";
 import "./style.css";
 
