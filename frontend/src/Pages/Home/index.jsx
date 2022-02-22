@@ -1,20 +1,28 @@
+import { useState } from "react";
+import CategoryCard from "../../Components/CategoryCard";
 import Container from "../../Components/Container/index";
-
+import data from "./data.json";
+import Toast from "../../Components/Toast";
+import "./style.css";
 const Home = () => {
+  const [toast, setToast] = useState(false);
   return (
     <Container>
-      <p>
-        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Neque
-        veritatis quibusdam quia numquam autem alias soluta maxime, id
-        recusandae minima rem, facilis assumenda perferendis nulla eligendi fuga
-        porro. Itaque, repudiandae!
-      </p>
-      <p>
-        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Neque
-        veritatis quibusdam quia numquam autem alias soluta maxime, id
-        recusandae minima rem, facilis assumenda perferendis nulla eligendi fuga
-        porro. Itaque, repudiandae!
-      </p>
+      <div className="main_data">
+        {data.map((quiz, index) => {
+          return (
+            <CategoryCard
+              key={index}
+              title={quiz.title}
+              questionAmount={quiz.questionsCount}
+              thumbnail={quiz.thumbnail}
+              marks={quiz.marks}
+              onClick={() => setToast(() => !toast)}
+            />
+          );
+        })}
+      </div>
+      {toast && <Toast />}
     </Container>
   );
 };

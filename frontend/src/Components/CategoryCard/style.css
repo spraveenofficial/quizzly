@@ -1,0 +1,51 @@
+.card-width {
+  max-width: 300px;
+  border-radius: 0.7rem;
+  background: var(--card-bg);
+  color: var(--white-color);
+  height: 350px;
+  cursor: pointer;
+  margin-bottom: 1.4rem;
+  transition: 0.3s;
+}
+.card-width:hover {
+  background: var(--card-text);
+  color: var(--black-text);
+}
+.card-width:hover .card_data p {
+  color: var(--black-text);
+}
+.card_data p:nth-child(1) {
+  color: var(--white-color);
+  font-weight: 700;
+}
+.card_data p {
+  font-weight: 500;
+  color: var(--card-text);
+  margin-bottom: 0.315rem;
+}
+
+.card-width img {
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  width: 100%;
+}
+
+@media(max-width: 767px){
+  .card-width{
+    max-width: 300px;
+  }
+}
+
+@media (min-width:453px) and (max-width: 600px) {
+  .card-width{
+    max-width: 220px;
+    height: 400px;
+  }
+}
+
+@media (min-width:100px) and (max-width: 452px){
+  .card-width{
+    min-width: 100%;
+  }
+}

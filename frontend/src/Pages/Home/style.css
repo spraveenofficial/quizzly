@@ -1,0 +1,7 @@
+.main_data {
+  height: 100%;
+  text-align: start;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}

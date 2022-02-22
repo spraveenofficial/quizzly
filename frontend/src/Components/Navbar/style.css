@@ -44,7 +44,7 @@ nav {
   width: 5rem;
   z-index: 99999999;
   cursor: pointer;
-  position: fixed;
+  position: absolute;
   right: 0.5rem;
   top: -11px;
   fill: var(--white)

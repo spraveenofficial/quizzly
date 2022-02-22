@@ -3,8 +3,10 @@ import Container from "../../Components/Container/index";
 import Input from "../../Components/Input/index";
 import { Link } from "react-router-dom";
 import "./style.css";
-
+import Toast from "../../Components/Toast";
+import { useState } from "react";
 export default function Signup() {
+  const [toast, setToast] = useState(false);
   const cardItems = {
     hidden: {
       y: -100,
@@ -67,13 +69,17 @@ export default function Signup() {
               <br />
             </div>
           </div>
-          <button className="btn full-width mt-10 inherit-font">
+          <button
+            onClick={() => setToast(!toast)}
+            className="btn full-width mt-10 inherit-font"
+          >
             Signup Now
           </button>
           <p className="text-center mt-10 text-white">
             Already Registered? <Link to="/login">Login Now</Link>{" "}
           </p>
         </motion.div>
+        {toast && <Toast />}
       </motion.div>
     </Container>
   );

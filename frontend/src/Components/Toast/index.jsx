@@ -29,21 +29,21 @@ export default function Toast() {
   return (
     <AnimatePresence>
       {toast && (
-      <motion.div
-        initial="hidden"
-        animate="show"
-        variants={animateToast}
-        exit="hidden"
-        className="snackbars"
-      >
-        <p>Something went wrong. Please try again</p>
-        <i
-          onClick={() => setToast(false)}
-          className="fa fa-times pointer"
-          aria-hidden="true"
-        ></i>
-      </motion.div>
-    )}
+        <motion.div
+          initial="hidden"
+          animate="show"
+          variants={animateToast}
+          exit="hidden"
+          className="snackbars"
+        >
+          <p>Under Construction. Please try again later.</p>
+          <i
+            onClick={() => setToast(false)}
+            className="fa fa-times pointer"
+            aria-hidden="true"
+          ></i>
+        </motion.div>
+      )}
     </AnimatePresence>
   );
 }
