@@ -5,19 +5,6 @@ import { Link } from "react-router-dom";
 import "./style.css";
 
 export default function Signup() {
-  const navVariants = {
-    hidden: { y: -10, opacity: 0 },
-    show: {
-      y: 0,
-      opacity: 1,
-      transition: {
-        delay: 0.3,
-        duration: 1,
-        type: "tween",
-        staggerChildren: 0.5,
-      },
-    },
-  };
   const cardItems = {
     hidden: {
       y: -100,
