@@ -33,16 +33,14 @@ const Home = () => {
   };
   return (
     <Container>
-      <motion.div
-        className="grid"
-        variants={categoryVariant}
-        initial="hidden"
-        animate={"show"}
-      >
+      <motion.div variants={categoryVariant} initial="hidden" animate={"show"}>
         <div className="main_data">
           {data.map((quiz, index) => {
             return (
-              <motion.div variants={categoryItemVariants}>
+              <motion.div
+                className="mobile-item"
+                variants={categoryItemVariants}
+              >
                 <CategoryCard
                   key={index}
                   title={quiz.title}

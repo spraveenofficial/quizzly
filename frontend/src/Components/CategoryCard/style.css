@@ -31,21 +31,22 @@
   width: 100%;
 }
 
-@media(max-width: 767px){
-  .card-width{
-    max-width: 300px;
-  }
-}
 
-@media (min-width:453px) and (max-width: 600px) {
+@media (min-width:501px) and (max-width: 600px) {
   .card-width{
-    max-width: 220px;
+    max-width: 230px;
     height: 400px;
   }
+  .mobile-item{
+    max-width: 230px;
+  }
 }
 
-@media (min-width:100px) and (max-width: 452px){
+@media (min-width:100px) and (max-width: 500px){
   .card-width{
     min-width: 100%;
+  }
+  .mobile-item{
+    width: 100%;
   }
 }
