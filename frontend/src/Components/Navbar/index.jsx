@@ -6,9 +6,10 @@ import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 const Navbar = () => {
   const navigate = useNavigate();
+  const [deviceType, setDeviceType] = useState("desktop");
   useEffect(() => {
     updateDeviceType(window.innerWidth);
-  }, []);
+  });
   useEffect(() => {
     window.addEventListener("resize", () => {
       updateDeviceType(window.innerWidth);
@@ -22,7 +23,6 @@ const Navbar = () => {
   const pushToHome = () => {
     navigate("/");
   };
-  const [deviceType, setDeviceType] = useState("desktop");
   const [showNav, setNav] = useState(false);
   const hideNav = () => {
     setNav(false);
