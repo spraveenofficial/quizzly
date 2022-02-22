@@ -27,10 +27,10 @@ const Navbar = () => {
   const hideNav = () => {
     setNav(false);
   };
-  console.log("run");
   const updateDeviceType = (width) => {
     if (width >= 768) {
       setDeviceType("desktop");
+      hideNav();
       return;
     }
     setDeviceType("mobile");
