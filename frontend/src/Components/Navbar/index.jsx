@@ -70,7 +70,7 @@ const Navbar = () => {
                   <motion.div className="navitems">
                     <Link to={"/"}>Home</Link>
                     <Link to={"/leaderboard"}>Leader Board 🚀</Link>
-                    <Link to={"/login"}>Login</Link>
+                    <Link to={"/signup"}>Sign Up</Link>
                   </motion.div>
                 </motion.div>
               </>
@@ -117,8 +117,8 @@ const Navbar = () => {
               <Link onClick={() => hideNav()} to={"/leaderboard"}>
                 Leader Board 🚀
               </Link>
-              <Link onClick={() => hideNav()} to={"/login"}>
-                Login
+              <Link onClick={() => hideNav()} to={"/signup"}>
+                Sign Up
               </Link>
             </motion.div>
           </motion.div>

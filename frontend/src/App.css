@@ -52,12 +52,6 @@ fieldset,
 img {
   border: 0;
 }
-input {
-  border: 1px solid #b0b0b0;
-  padding: 3px 5px 4px;
-  color: #979797;
-  width: 190px;
-}
 address,
 caption,
 cite,
@@ -91,10 +85,26 @@ acronym {
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
 }
+a{
+  color: var(--white);
+  text-decoration: none;
+}
 
 /* Utilities Class */
 .pointer {
   cursor: pointer;
+}
+.text-center{
+  text-align: center;
+}
+.full-width{
+  width: 100%;
+}
+.mt-10{
+  margin-top: 0.625rem;
+}
+.inherit-font{
+  font-family: inherit;
 }
 
 /* Webkit Scrollbar */

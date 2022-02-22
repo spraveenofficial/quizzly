@@ -1,0 +1,23 @@
+.logincontainer {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  height: 100vh;
+}
+
+.remember-options {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.checkbox{
+    margin-right: 10px;
+}
+
+.logincard {
+  height: fit-content;
+  width: 100%;
+  padding: 1.25rem;
+  border: 1px solid var(--white);
+  border-radius: 0.3rem;
+}
