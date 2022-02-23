@@ -20,6 +20,7 @@ const Home = () => {
               <motion.div
                 className="mobile-item"
                 variants={categoryItemVariants}
+                key={index}
               >
                 <CategoryCard
                   key={index}

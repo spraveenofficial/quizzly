@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./style.css";
 import { motion, AnimatePresence } from "framer-motion";
-export default function Toast() {
+export default function Toast({ message, success }) {
   const [toast, setToast] = useState(true);
   setInterval(() => {
     setToast(false);
@@ -35,8 +35,11 @@ export default function Toast() {
           variants={animateToast}
           exit="hidden"
           className="snackbars"
+          style={{ background: success ? "green" : "red" }}
         >
-          <p>Under Construction. Please try again later.</p>
+          <p>
+            {message ? message : "Under Construction. Please try again later."}
+          </p>
           <i
             onClick={() => setToast(false)}
             className="fa fa-times pointer"

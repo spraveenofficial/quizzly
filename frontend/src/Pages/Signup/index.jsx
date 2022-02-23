@@ -5,9 +5,20 @@ import { Link } from "react-router-dom";
 import animation from "../../helpers/animation";
 import "./style.css";
 import Toast from "../../Components/Toast";
+import { useDispatch, useSelector } from "react-redux";
+import { signup } from "../../Redux/Actions/user";
 import { useState } from "react";
 export default function Signup() {
-  const [toast, setToast] = useState(false);
+  const [inputItem, setInputItem] = useState({
+    name: "",
+    email: "",
+    password: "",
+  });
+  const handleChange = (e) => {
+    setInputItem({ ...inputItem, [e.target.name]: e.target.value });
+  };
+  const dispatch = useDispatch();
+  const { loading, message, success } = useSelector((state) => state.register);
   return (
     <Container>
       <motion.div
@@ -56,7 +67,9 @@ export default function Signup() {
             </div>
           </div>
           <button
-            onClick={() => setToast(!toast)}
+            onClick={() =>
+              dispatch(signup("mohit", "dauhfdsay@gmail.com", "password"))
+            }
             className="btn full-width mt-10 inherit-font"
           >
             Signup Now
@@ -65,7 +78,7 @@ export default function Signup() {
             Already Registered? <Link to="/login">Login Now</Link>{" "}
           </p>
         </motion.div>
-        {toast && <Toast />}
+        {message && <Toast message={message} success={success} />}
       </motion.div>
     </Container>
   );
