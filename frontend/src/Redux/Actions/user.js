@@ -6,7 +6,7 @@ import {
   USER_LOGIN_SUCCESS,
   USER_LOGIN_FAIL,
 } from "../Constants/auth";
-
+import baseUrl from "../../baseurl";
 import axios from "axios";
 
 export const signup = (name, email, password) => async (dispatch) => {
@@ -16,7 +16,7 @@ export const signup = (name, email, password) => async (dispatch) => {
     });
     const { data } = await axios({
       method: "POST",
-      url: "/signup",
+      url: `${baseUrl}/signup`,
       data: {
         name: name,
         email: email,
@@ -52,7 +52,7 @@ export const login = (email, password) => async (dispatch) => {
     });
     const { data } = await axios({
       method: "POST",
-      url: "/login",
+      url: `${baseUrl}/login`,
       data: {
         email: email,
         password: password,

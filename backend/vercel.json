@@ -3,7 +3,7 @@
   "builds": [{ "src": "index.js", "use": "@vercel/node" }],
   "routes": [
     {
-      "src": "/api/v1/(.*)",
+      "src": "/v1/api(.*)",
       "dest": "/index.js",
       "methods": ["GET"],
       "headers": {
@@ -13,7 +13,7 @@
       }
     },
     {
-      "src": "/api",
+      "src": "/v1/api",
       "dest": "/index.js",
       "methods": ["GET"]
     }
