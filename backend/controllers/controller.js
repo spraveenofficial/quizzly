@@ -54,6 +54,50 @@ class MainController {
       });
     }
   }
+  async updateUserCompletedQuiz(req, res) {
+    const { email } = req.body;
+    try {
+      userModel
+        .updateOne(
+          { email },
+          {
+            $push: {
+              completedQuiz: {
+                $each: [{ id: 7, score: 70, timeTaken: 10 }],
+                $sort: { score: -1 },
+              },
+            },
+          }
+        )
+        .exec()
+        .then((response) => {
+          return res.json({
+            message: "Data retreived",
+            data: response,
+          });
+        });
+    } catch (error) {
+      return res.json({
+        message: "Data retreived",
+        data: response,
+      });
+    }
+
+    // userModel.findOne({ email }).then((response) => {
+    //   return res.json({
+    //     message: "Data retreived",
+    //     data: response,
+    //   });
+    // });
+  }
+  async profile(req, res) {
+    const { email } = req.body;
+    userModel.findOne({ email }).then((response) => {
+      return res.json({
+        data: response,
+      });
+    });
+  }
 }
 
 export default new MainController();

@@ -1,4 +1,4 @@
-:root{
+:root {
   --success-input: #2ecc71;
   --error-input: #e74c3c;
 }
@@ -23,6 +23,10 @@
   position: absolute;
   top: 38%;
   right: 0.625rem;
+}
+
+.form-control .successicon {
+  top: 48%;
 }
 
 .input-main {

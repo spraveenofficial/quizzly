@@ -1,6 +1,15 @@
 import "./style.css";
 import { motion } from "framer-motion";
-export default function Input({ label, placeholder, type, error, success }) {
+export default function Input({
+  label,
+  placeholder,
+  type,
+  error,
+  success,
+  name,
+  onChange,
+  errorMessage,
+}) {
   return label ? (
     <motion.div
       className={`${
@@ -12,13 +21,19 @@ export default function Input({ label, placeholder, type, error, success }) {
       } form-control`}
     >
       <label>{label}</label>
-      <input type={type} placeholder={placeholder} className="input-main" />
+      <input
+        onChange={onChange}
+        name={name}
+        type={type}
+        placeholder={placeholder}
+        className="input-main"
+      />
       {success ? (
-        <i className="fas fa-check-circle"></i>
+        <i className="fas successicon fa-check-circle"></i>
       ) : (
         error && <i className="fas fa-exclamation-circle"></i>
       )}
-      <div className="error-msg">{error ? "Error" : ""}</div>
+      <div className="error-msg">{error ? errorMessage : ""}</div>
     </motion.div>
   ) : (
     <motion.div className="form-controls">

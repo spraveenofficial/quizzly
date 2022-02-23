@@ -10,8 +10,8 @@
   justify-content: space-between;
   align-items: center;
 }
-.checkbox{
-    margin-right: 10px;
+.checkbox {
+  margin-right: 10px;
 }
 
 .logincard {
@@ -20,4 +20,14 @@
   padding: 1.25rem;
   border: 1px solid var(--white);
   border-radius: 0.3rem;
+}
+
+.loading-btn {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+.loading-btn div {
+  margin-right: 5px;
 }
