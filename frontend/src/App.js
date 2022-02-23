@@ -11,15 +11,15 @@ import { useEffect } from "react";
 import { loadUser, getUser } from "./Redux/Actions/auth";
 import store from "./Redux/Stores/store";
 function App() {
-  const { loading } = useSelector((state) => state.auth);
-  let token = false;
-  useEffect(() => {
-    if (token) {
-      store.dispatch(loadUser());
-    } else {
-      store.dispatch(getUser());
-    }
-  }, []);
+  // const { loading } = useSelector((state) => state.auth);
+  // let token = false;
+  // useEffect(() => {
+  //   if (token) {
+  //     store.dispatch(loadUser());
+  //   } else {
+  //     store.dispatch(getUser());
+  //   }
+  // }, []);
   return (
     <Router>
       <Navbar />

@@ -38,19 +38,22 @@ class MainController {
     const user = await userModel.findOne({ email });
     if (user && (await user.matchPassword(password))) {
       res.json({
-        _id: user._id,
-        name: user.name,
-        email: user.email,
-        isAdmin: user.isAdmin,
+        success: true,
+        statusCode: 200,
+        message: "Login Success",
         token: "token",
       });
     } else if (!user) {
-      res.json({
-        message: "Not registered",
+      return res.json({
+        message: "User Not Found, Signup Now",
+        statusCode: 500,
+        success: false,
       });
     } else {
-      res.json({
-        message: "Invalid password",
+      return res.json({
+        message: "Invalid Password",
+        statusCode: 500,
+        success: false,
       });
     }
   }

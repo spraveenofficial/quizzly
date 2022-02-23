@@ -3,7 +3,21 @@ import Container from "../../Components/Container/index";
 import Input from "../../Components/Input/index";
 import { Link } from "react-router-dom";
 import animation from "../../helpers/animation";
+import { useDispatch, useSelector } from "react-redux";
+import Toast from "../../Components/Toast";
+import { login } from "../../Redux/Actions/user";
+import Loader from "../../Components/Loader";
+import { useState } from "react";
 export default function Login() {
+  const dispatch = useDispatch();
+  const [userInput, setUserInput] = useState({ email: "", password: "" });
+  const handleChange = (e) => {
+    setUserInput({ ...userInput, [e.target.name]: e.target.value });
+  };
+  const { loading, message, success } = useSelector((state) => state.login);
+  const handleSubmit = () => {
+    dispatch(login(userInput.email, userInput.password));
+  };
   return (
     <Container>
       <motion.div
@@ -21,6 +35,8 @@ export default function Login() {
             success={false}
             label={"Enter Email"}
             placeholder="test@gmail.com"
+            name="email"
+            onChange={handleChange}
           />
           <Input
             type="password"
@@ -28,6 +44,8 @@ export default function Login() {
             success={false}
             label={"Enter Password"}
             placeholder="***********"
+            name="password"
+            onChange={handleChange}
           />
           <div className="remember-options">
             <div className="remember">
@@ -47,13 +65,17 @@ export default function Login() {
               </Link>
             </div>
           </div>
-          <button className="btn full-width mt-10 inherit-font">
-            Login Now
+          <button
+            onClick={handleSubmit}
+            className="btn full-width mt-10 inherit-font loading-btn"
+          >
+            {loading && <Loader />} Login Now
           </button>
           <p className="text-center mt-10 text-white">
             New User? <Link to="/signup">Signup Now</Link>{" "}
           </p>
         </motion.div>
+        {message && <Toast message={message} success={success} />}
       </motion.div>
     </Container>
   );
