@@ -20,6 +20,13 @@ app.use(
     origin: "*",
   })
 );
+app.use((req, res, next) => {
+  res.setHeader("Access-Control-Allow-Origin", "");
+  res.setHeader("Access-Control-Allow-Headers", "*");
+  res.header("Access-Control-Allow-Credentials", true);
+  next();
+});
+
 app.use(express.json());
 
 const PORT = process.env.PORT || 3505;
