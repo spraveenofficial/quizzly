@@ -16,6 +16,7 @@ app.use(morgan("dev"));
 // Registering Cors
 app.use(
   cors({
+    credentials: true,
     origin: "*",
   })
 );
