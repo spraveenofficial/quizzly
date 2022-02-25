@@ -3,11 +3,11 @@
   "builds": [{ "src": "index.js", "use": "@vercel/node" }],
   "routes": [
     {
-      "src": "/V1/api/(.*)",
+      "src": "/v1/api/(.*)",
       "dest": "/index.js",
       "methods": ["GET", "PUT", "POST"],
       "headers": {
-        "Access-Control-Allow-Origin": "https://quizzly-quiz.vercel.app",
+        "Access-Control-Allow-Origin": "",
         "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept, Authorization",
         "Access-Control-Allow-Credentials": "true"
       }
