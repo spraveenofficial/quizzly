@@ -16,15 +16,21 @@ app.use(morgan("dev"));
 //     credentials: true,
 //   })
 // );
+app.use(
+  cors({
+    origin: ["http://localhost:3000", "https://quizzly-quiz.vercel.app"],
+    credentials: true,
+  })
+);
 // Registering morgan for development
 
 // Registering Cors
-app.use((req, res, next) => {
-  res.setHeader("Access-Control-Allow-Origin", "*");
-  res.setHeader("Access-Control-Allow-Headers", "*");
-  res.header("Access-Control-Allow-Credentials", true);
-  next();
-});
+// app.use((req, res, next) => {
+//   res.setHeader("Access-Control-Allow-Origin", "*");
+//   res.setHeader("Access-Control-Allow-Headers", "*");
+//   res.header("Access-Control-Allow-Credentials", true);
+//   next();
+// });
 
 app.use(express.json());
 
