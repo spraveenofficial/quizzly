@@ -8,24 +8,19 @@ import "./database/db.js";
 dotenv.config();
 
 const app = express();
+app.use(cors());
 app.use(express.urlencoded({ extended: false }));
 
 // Registering morgan for development
 app.use(morgan("dev"));
 
 // Registering Cors
-// app.use(
-//   cors({
-//     credentials: true,
-//     origin: "*",
-//   })
-// );
-app.use((req, res, next) => {
-  res.setHeader("Access-Control-Allow-Origin", "*");
-  res.setHeader("Access-Control-Allow-Headers", "*");
-  res.header("Access-Control-Allow-Credentials", true);
-  next();
-});
+// app.use((req, res, next) => {
+//   res.setHeader("Access-Control-Allow-Origin", "*");
+//   res.setHeader("Access-Control-Allow-Headers", "*");
+//   res.header("Access-Control-Allow-Credentials", true);
+//   next();
+// });
 
 app.use(express.json());
 
