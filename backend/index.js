@@ -14,14 +14,14 @@ app.use(express.urlencoded({ extended: false }));
 app.use(morgan("dev"));
 
 // Registering Cors
-app.use(
-  cors({
-    credentials: true,
-    origin: "*",
-  })
-);
+// app.use(
+//   cors({
+//     credentials: true,
+//     origin: "*",
+//   })
+// );
 app.use((req, res, next) => {
-  res.setHeader("Access-Control-Allow-Origin", "");
+  res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader("Access-Control-Allow-Headers", "*");
   res.header("Access-Control-Allow-Credentials", true);
   next();
