@@ -1,4 +1,6 @@
 import userModel from "../models/user.js";
+import token from "../utils/tokens.js";
+
 class MainController {
   async signup(req, res) {
     const { name, email, password } = req.body;
@@ -41,7 +43,7 @@ class MainController {
         success: true,
         statusCode: 200,
         message: "Login Success",
-        token: "token",
+        token: token(user._id),
       });
     } else if (!user) {
       return res.json({
@@ -56,6 +58,19 @@ class MainController {
         success: false,
       });
     }
+  }
+  async verifyUser(req, res) {
+    const { id } = req.data;
+    const user = await userModel.findOne({ id });
+    return res.json({
+      success: true,
+      message: "User successfully retreived",
+      statusCode: 200,
+      data: {
+        name: user.name,
+        email: user.email,
+      },
+    });
   }
   async updateUserCompletedQuiz(req, res) {
     const { email } = req.body;

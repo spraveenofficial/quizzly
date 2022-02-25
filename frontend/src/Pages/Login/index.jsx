@@ -1,14 +1,15 @@
 import { motion } from "framer-motion";
 import Container from "../../Components/Container/index";
 import Input from "../../Components/Input/index";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import animation from "../../helpers/animation";
 import { useDispatch, useSelector } from "react-redux";
 import Toast from "../../Components/Toast";
 import { login } from "../../Redux/Actions/user";
 import Loader from "../../Components/Loader";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 export default function Login() {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const [userInput, setUserInput] = useState({ email: "", password: "" });
   const handleChange = (e) => {
@@ -18,6 +19,9 @@ export default function Login() {
   const handleSubmit = () => {
     dispatch(login(userInput.email, userInput.password));
   };
+  // useEffect(() => {
+  //   console.log(success, loading);
+  // }, [success, loading]);
   return (
     <Container>
       <motion.div

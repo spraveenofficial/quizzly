@@ -6,29 +6,31 @@ import Signup from "./Pages/Signup/index";
 import Login from "./Pages/Login";
 import LeaderBoard from "./Pages/LeaderBoard";
 import Terms from "./Pages/Terms";
-import { useSelector } from "react-redux";
+import { GuestRoutes, ProtectedRoutes } from "./helpers/Routes";
 import { useEffect } from "react";
-import { loadUser, getUser } from "./Redux/Actions/auth";
-import store from "./Redux/Stores/store";
+import { useDispatch } from "react-redux";
+import { loadUser } from "./Redux/Actions/auth";
 function App() {
-  // const { loading } = useSelector((state) => state.auth);
-  // let token = false;
-  // useEffect(() => {
-  //   if (token) {
-  //     store.dispatch(loadUser());
-  //   } else {
-  //     store.dispatch(getUser());
-  //   }
-  // }, []);
+  const dispatch = useDispatch();
+  const token = localStorage.getItem("token");
+  useEffect(() => {
+    if (token) {
+      dispatch(loadUser());
+    }
+  }, []);
   return (
     <Router>
       <Navbar />
       <Routes>
-        <Route path="/" exact={true} element={<Home />} />
-        <Route path="/signup" element={<Signup />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/leaderboard" element={<LeaderBoard />} />
-        <Route path="/terms" element={<Terms />} />
+        <Route element={<ProtectedRoutes />}>
+          <Route path="/" exact={true} element={<Home />} />
+          <Route path="/leaderboard" element={<LeaderBoard />} />
+          <Route path="/terms" element={<Terms />} />
+        </Route>
+        <Route element={<GuestRoutes />}>
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
+        </Route>
       </Routes>
     </Router>
   );

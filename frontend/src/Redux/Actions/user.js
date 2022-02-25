@@ -5,7 +5,7 @@ import {
   USER_LOGIN_REQUEST,
   USER_LOGIN_SUCCESS,
   USER_LOGIN_FAIL,
-} from "../Constants/auth";
+} from "../Constants/types";
 import baseUrl from "../../baseurl";
 import axios from "axios";
 

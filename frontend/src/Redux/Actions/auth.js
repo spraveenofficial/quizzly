@@ -1,21 +1,32 @@
-import { SET_AUTH, LOAD_USER } from "../Constants/types";
+import {
+  USER_LOAD_REQUEST,
+  USER_LOAD_SUCCESS,
+  USER_LOAD_FAILURE,
+} from "../Constants/types";
+import axios from "axios";
+import baseUrl from "../../baseurl";
+
 export const loadUser = () => async (dispatch) => {
-  const token = localStorage.getItem("erpToken");
-  console.log(token);
   try {
     dispatch({
-      type: SET_AUTH,
-      payload: null,
+      type: USER_LOAD_REQUEST,
+    });
+    const token = localStorage.getItem("token");
+    const { data } = await axios({
+      method: "GET",
+      url: `${baseUrl}/verify`,
+      headers: {
+        token: `Bearer ${token}`,
+      },
+    });
+    console.log(data);
+    dispatch({
+      type: USER_LOAD_SUCCESS,
+      payload: data.data,
     });
   } catch (error) {
     dispatch({
-      type: SET_AUTH,
+      type: USER_LOAD_FAILURE,
     });
   }
-};
-
-export const getUser = () => async (dispatch) => {
-  dispatch({
-    type: LOAD_USER,
-  });
 };
