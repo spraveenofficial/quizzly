@@ -5,12 +5,7 @@
     {
       "src": "/v1/api/(.*)",
       "dest": "/index.js",
-      "methods": ["GET"],
-      "headers": {
-        "Access-Control-Allow-Origin": "*",
-        "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept, Authorization",
-        "Access-Control-Allow-Credentials": "true"
-      }
-    }  
+      "methods": ["GET", "POST"]
+    }
   ]
 }
