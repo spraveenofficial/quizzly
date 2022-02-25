@@ -3,27 +3,18 @@ import cors from "cors";
 import dotenv from "dotenv";
 import morgan from "morgan";
 import apiRoutes from "./routes/routes.js";
-import customCors from "./cors.js"
 import "./database/db.js";
 dotenv.config();
 
 const app = express();
 app.use(express.urlencoded({ extended: false }));
 app.use(morgan("dev"));
-app.use(customCors);
-// app.use(
-//   cors({
-//     origin: "*",
-//     credentials: true,
-//   })
-// );
-// app.use(
-//   cors({
-//     origin: ["http://localhost:3000", "https://quizzly-quiz.vercel.app"],
-//     credentials: true,
-//   })
-// );
-// Registering morgan for development
+app.use(
+  cors({
+    origin: "*",
+    credentials: true,
+  })
+);
 
 // Registering Cors
 // app.use((req, res, next) => {
