@@ -10,21 +10,21 @@ dotenv.config();
 const app = express();
 app.use(express.urlencoded({ extended: false }));
 app.use(morgan("dev"));
-app.use(
-  cors({
-    origin: "*",
-    credentials: true,
-  })
-);
+// app.use(
+//   cors({
+//     origin: "*",
+//     credentials: true,
+//   })
+// );
 // Registering morgan for development
 
 // Registering Cors
-// app.use((req, res, next) => {
-//   res.setHeader("Access-Control-Allow-Origin", "*");
-//   res.setHeader("Access-Control-Allow-Headers", "*");
-//   res.header("Access-Control-Allow-Credentials", true);
-//   next();
-// });
+app.use((req, res, next) => {
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Headers", "*");
+  res.header("Access-Control-Allow-Credentials", true);
+  next();
+});
 
 app.use(express.json());
 
