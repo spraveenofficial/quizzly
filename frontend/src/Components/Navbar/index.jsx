@@ -4,8 +4,10 @@ import { useState, useEffect } from "react";
 import Hamburger from "../Hamburger/index";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 const Navbar = () => {
   const navigate = useNavigate();
+  const { isAuthenticated, user } = useSelector((state) => state.auth);
   const [deviceType, setDeviceType] = useState("desktop");
   useEffect(() => {
     updateDeviceType(window.innerWidth);
@@ -70,7 +72,11 @@ const Navbar = () => {
                   <motion.div className="navitems">
                     <Link to={"/"}>Home</Link>
                     <Link to={"/leaderboard"}>Leader Board 🚀</Link>
-                    <Link to={"/signup"}>Sign Up</Link>
+                    {isAuthenticated ? (
+                      <Link to={"/signup"}>{user.name}</Link>
+                    ) : (
+                      <Link to={"/signup"}>Sign Up</Link>
+                    )}
                   </motion.div>
                 </motion.div>
               </>
@@ -117,9 +123,18 @@ const Navbar = () => {
               <Link onClick={() => hideNav()} to={"/leaderboard"}>
                 Leader Board 🚀
               </Link>
-              <Link onClick={() => hideNav()} to={"/signup"}>
+              {isAuthenticated ? (
+                <Link onClick={() => hideNav()} to={"/signup"}>
+                  {user.name}
+                </Link>
+              ) : (
+                <Link onClick={() => hideNav()} to={"/signup"}>
+                  Sign Up
+                </Link>
+              )}
+              {/* <Link onClick={() => hideNav()} to={"/signup"}>
                 Sign Up
-              </Link>
+              </Link> */}
             </motion.div>
           </motion.div>
         ) : null}

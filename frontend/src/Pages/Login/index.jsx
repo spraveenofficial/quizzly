@@ -8,6 +8,7 @@ import Toast from "../../Components/Toast";
 import { login } from "../../Redux/Actions/user";
 import Loader from "../../Components/Loader";
 import { useEffect, useState } from "react";
+import { loadUser } from "../../Redux/Actions/auth";
 export default function Login() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -19,9 +20,12 @@ export default function Login() {
   const handleSubmit = () => {
     dispatch(login(userInput.email, userInput.password));
   };
-  // useEffect(() => {
-  //   console.log(success, loading);
-  // }, [success, loading]);
+  useEffect(() => {
+    success == true &&
+      setTimeout(() => {
+        dispatch(loadUser());
+      }, 1000);
+  }, [success]);
   return (
     <Container>
       <motion.div
