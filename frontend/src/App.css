@@ -51,6 +51,8 @@ table {
 fieldset,
 img {
   border: 0;
+  object-fit: cover;
+  
 }
 address,
 caption,

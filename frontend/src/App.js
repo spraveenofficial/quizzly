@@ -9,7 +9,8 @@ import Terms from "./Pages/Terms";
 import { GuestRoutes, ProtectedRoutes } from "./helpers/Routes";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { loadUser } from "./Redux/Actions/auth";
+import { loadUser, getUser } from "./Redux/Actions/auth";
+import LoadingPage from "./Pages/LoadingPage";
 function App() {
   const dispatch = useDispatch();
   const { loading } = useSelector((state) => state.auth);
@@ -17,12 +18,14 @@ function App() {
   useEffect(() => {
     if (token) {
       dispatch(loadUser());
+    } else {
+      dispatch(getUser());
     }
-  }, [token]);
+  }, []);
   return (
     <Router>
       {loading ? (
-        <h1>Loading..</h1>
+        <LoadingPage />
       ) : (
         <>
           <Navbar />

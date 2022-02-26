@@ -37,3 +37,9 @@ export const loadUser = () => async (dispatch) => {
     });
   }
 };
+
+export const getUser = () => async (dispatch) => {
+  dispatch({
+    type: USER_LOAD_FAILURE,
+  });
+};

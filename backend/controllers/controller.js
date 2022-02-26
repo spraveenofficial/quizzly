@@ -61,7 +61,7 @@ class MainController {
   }
   async verifyUser(req, res) {
     const { id } = req.data;
-    const user = await userModel.findOne({ id });
+    const user = await userModel.findOne({ _id: id });
     return res.json({
       success: true,
       message: "User successfully retreived",

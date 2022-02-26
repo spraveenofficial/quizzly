@@ -1,0 +1,10 @@
+.pageLoader{
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.pageLoader .loader{
+    font-size: 1.3rem;
+}

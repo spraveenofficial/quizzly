@@ -4,9 +4,11 @@ import { useState, useEffect } from "react";
 import Hamburger from "../Hamburger/index";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { logout } from "../../Redux/Actions/user";
 const Navbar = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const { isAuthenticated, user } = useSelector((state) => state.auth);
   const [deviceType, setDeviceType] = useState("desktop");
   useEffect(() => {
@@ -24,6 +26,10 @@ const Navbar = () => {
   });
   const pushToHome = () => {
     navigate("/");
+  };
+  const handleLogout = () => {
+    dispatch(logout());
+    window.location.reload();
   };
   const [showNav, setNav] = useState(false);
   const hideNav = () => {
@@ -73,9 +79,15 @@ const Navbar = () => {
                     <Link to={"/"}>Home</Link>
                     <Link to={"/leaderboard"}>Leader Board 🚀</Link>
                     {isAuthenticated ? (
-                      <Link to={"/signup"}>{user.name}</Link>
+                      <p>
+                        <Link to={"/profile"}>{user.name}</Link>,{" "}
+                        <span onClick={() => handleLogout()}>
+                          {" "}
+                          &nbsp; Logout?
+                        </span>
+                      </p>
                     ) : (
-                      <Link to={"/signup"}>Sign Up</Link>
+                      <Link to={"/login"}>Login</Link>
                     )}
                   </motion.div>
                 </motion.div>
@@ -124,17 +136,15 @@ const Navbar = () => {
                 Leader Board 🚀
               </Link>
               {isAuthenticated ? (
-                <Link onClick={() => hideNav()} to={"/signup"}>
-                  {user.name}
-                </Link>
+                <p>
+                  <Link to={"/profile"}>{user.name}</Link>,{" "}
+                  <span onClick={() => handleLogout()}> &nbsp; Logout?</span>
+                </p>
               ) : (
-                <Link onClick={() => hideNav()} to={"/signup"}>
-                  Sign Up
+                <Link onClick={() => hideNav()} to={"/login"}>
+                  Login
                 </Link>
               )}
-              {/* <Link onClick={() => hideNav()} to={"/signup"}>
-                Sign Up
-              </Link> */}
             </motion.div>
           </motion.div>
         ) : null}
