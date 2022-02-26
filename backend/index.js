@@ -4,7 +4,7 @@ import dotenv from "dotenv";
 import morgan from "morgan";
 import apiRoutes from "./routes/routes.js";
 import "./database/db.js";
-import ourCors from "./cors.js"
+// import ourCors from "./cors.js";
 dotenv.config();
 
 const app = express();

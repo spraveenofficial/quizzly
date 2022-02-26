@@ -1,16 +1,13 @@
 const allowCors = (fn) => async (req, res) => {
   res.setHeader("Access-Control-Allow-Credentials", true);
   res.setHeader("Access-Control-Allow-Origin", "*");
-  res.setHeader(
-    "Access-Control-Allow-Methods",
-    "GET,OPTIONS,PATCH,DELETE,POST,PUT"
-  );
+  // another option
+  // res.setHeader('Access-Control-Allow-Origin', req.headers.origin);
+  res.setHeader("Access-Control-Allow-Methods", "GET,OPTIONS");
   res.setHeader(
     "Access-Control-Allow-Headers",
     "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version"
   );
-
-  // Handle CORS pre-flight
   if (req.method === "OPTIONS") {
     res.status(200).end();
     return;
@@ -18,4 +15,8 @@ const allowCors = (fn) => async (req, res) => {
   return await fn(req, res);
 };
 
-export default allowCors;
+const handler = (req, res) => {
+  return res.json();
+};
+
+export default allowCors(handler);
