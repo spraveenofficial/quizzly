@@ -5,7 +5,7 @@ export default function Toast({ message, success }) {
   const [toast, setToast] = useState(true);
   setTimeout(() => {
     setToast(false);
-  }, 3000);
+  }, 2000);
   const animateToast = {
     hidden: {
       x: -1000,

@@ -9,7 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { signup } from "../../Redux/Actions/user";
 import { useState } from "react";
 import Loader from "../../Components/Loader";
-import validate from "../../helpers/validate";
+import { signupValidate } from "../../helpers/validate";
 export default function Signup() {
   const dispatch = useDispatch();
   const { loading, message, success } = useSelector((state) => state.register);
@@ -25,10 +25,10 @@ export default function Signup() {
       ...inputItem,
       [e.target.name]: e.target.value,
     });
-    setError(validate(inputItem));
+    // setError(signupValidate(inputItem));
   };
   const handleSubmit = async () => {
-    const resultOfValidation = validate(inputItem);
+    const resultOfValidation = signupValidate(inputItem);
     setError(resultOfValidation);
     if (
       resultOfValidation[0].success &&

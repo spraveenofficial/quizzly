@@ -9,15 +9,22 @@ import { login } from "../../Redux/Actions/user";
 import Loader from "../../Components/Loader";
 import { useEffect, useState } from "react";
 import { loadUser } from "../../Redux/Actions/auth";
+import { loginValidate } from "../../helpers/validate";
 export default function Login() {
   const dispatch = useDispatch();
   const [userInput, setUserInput] = useState({ email: "", password: "" });
+  const [errors, setErrors] = useState([]);
   const handleChange = (e) => {
     setUserInput({ ...userInput, [e.target.name]: e.target.value });
   };
   const { loading, message, success } = useSelector((state) => state.login);
   const handleSubmit = () => {
-    dispatch(login(userInput.email, userInput.password));
+    const validateResult = loginValidate(userInput);
+    console.log(validateResult)
+    setErrors( validateResult);
+    if (validateResult[0].success && validateResult[1].success) {
+      dispatch(login(userInput.email, userInput.password));
+    }
   };
   useEffect(() => {
     success == true &&
@@ -38,8 +45,9 @@ export default function Login() {
           <h1 className="text-center">Login 👋</h1>
           <Input
             type="email"
-            error={false}
-            success={false}
+            error={errors[0]?.error}
+            success={errors[0]?.success}
+            errorMessage={errors[0]?.message}
             label={"Enter Email"}
             placeholder="test@gmail.com"
             name="email"
@@ -47,8 +55,9 @@ export default function Login() {
           />
           <Input
             type="password"
-            error={false}
-            success={false}
+            error={errors[1]?.error}
+            success={errors[1]?.success}
+            errorMessage={errors[1]?.message}
             label={"Enter Password"}
             placeholder="***********"
             name="password"
