@@ -3,9 +3,9 @@ import "./style.css";
 import { motion, AnimatePresence } from "framer-motion";
 export default function Toast({ message, success }) {
   const [toast, setToast] = useState(true);
-  setInterval(() => {
+  setTimeout(() => {
     setToast(false);
-  }, 5000);
+  }, 3000);
   const animateToast = {
     hidden: {
       x: -1000,

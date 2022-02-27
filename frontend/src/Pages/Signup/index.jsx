@@ -9,53 +9,36 @@ import { useDispatch, useSelector } from "react-redux";
 import { signup } from "../../Redux/Actions/user";
 import { useState } from "react";
 import Loader from "../../Components/Loader";
+import validate from "../../helpers/validate";
 export default function Signup() {
   const dispatch = useDispatch();
   const { loading, message, success } = useSelector((state) => state.register);
-  const [nameError, setNameError] = useState(false);
-  // const [nameSuccess, setNameSuccess] = useState(false);
-  const [nametextError, setNametextError] = useState("");
-  const [emailError, setEmailError] = useState(false);
-  // const [emailSuccess, setEmailSuccess] = useState(false);
-  const [emailTextError, setEmailTextError] = useState("");
-  const [passwordError, setPasswordError] = useState(false);
-  // const [passwordSuccess, setPasswordSuccess] = useState(false);
-  const [passwordTextError, setTextPasswordError] = useState("");
+  const [errors, setError] = useState([]);
   const [inputItem, setInputItem] = useState({
     name: "",
     email: "",
     password: "",
+    checkbox: false,
   });
   const handleChange = (e) => {
-    setInputItem({ ...inputItem, [e.target.name]: e.target.value });
+    setInputItem({
+      ...inputItem,
+      [e.target.name]: e.target.value,
+    });
+    setError(validate(inputItem));
   };
-  const handleSubmit = () => {
-    if (!inputItem.name && !inputItem.email && !inputItem.password) {
-      setNameError(true);
-      setNametextError("You should put your valid Name.");
-      setEmailError(true);
-      setEmailTextError("Enter valid Email Address.");
-      setPasswordError(true);
-      setTextPasswordError("Enter password of minimim 6 characters.");
-      return;
-    } else if ((!inputItem.name && !inputItem.password) || !inputItem.name) {
-      setNameError(true);
-      setNametextError("You should put your valid Name.");
-      return;
-    } else if ((!inputItem.email && !inputItem.password) || !inputItem.email) {
-      setEmailError(true);
-      setEmailTextError("Enter valid Email Address.");
-      setPasswordError(true);
-      setTextPasswordError("Enter password of minimim 6 characters.");
-      return;
-    } else if (!inputItem.password) {
-      setPasswordError(true);
-      setTextPasswordError("Enter password of minimim 6 characters.");
-      return;
+  const handleSubmit = async () => {
+    const resultOfValidation = validate(inputItem);
+    setError(resultOfValidation);
+    if (
+      resultOfValidation[0].success &&
+      resultOfValidation[1].success &&
+      resultOfValidation[2].success
+    ) {
+      dispatch(signup(inputItem.name, inputItem.email, inputItem.password));
     }
-    // setFormError(validate(inputItem));
-    dispatch(signup(inputItem.name, inputItem.email, inputItem.password));
   };
+
   return (
     <Container>
       <motion.div
@@ -68,20 +51,20 @@ export default function Signup() {
         <motion.div className="logincard">
           <h1 className="text-center">Sign Up 👋</h1>
           <Input
-            error={nameError}
+            error={errors[0]?.error}
             type="text"
-            success={false}
+            success={errors[0]?.success}
             label={"Enter Name"}
-            errorMessage={nametextError}
+            errorMessage={errors[0]?.message}
             placeholder="John doe"
             name="name"
             onChange={handleChange}
           />
           <Input
             type="email"
-            error={emailError}
-            success={false}
-            errorMessage={emailTextError}
+            error={errors[1]?.error}
+            success={errors[1]?.success}
+            errorMessage={errors[1]?.message}
             label={"Enter Email"}
             placeholder="test@gmail.com"
             name="email"
@@ -89,9 +72,9 @@ export default function Signup() {
           />
           <Input
             type="password"
-            error={passwordError}
-            errorMessage={passwordTextError}
-            success={false}
+            error={errors[2]?.error}
+            success={errors[2]?.success}
+            errorMessage={errors[2]?.message}
             label={"Enter Password"}
             placeholder="***********"
             name="password"
@@ -105,6 +88,14 @@ export default function Signup() {
                 name="checkbox"
                 value="true"
                 className="checkbox"
+                onChange={(e) => {
+                  handleChange({
+                    target: {
+                      name: e.target.name,
+                      value: e.target.checked,
+                    },
+                  });
+                }}
               />
               <label htmlFor="checkbox">
                 I agree, all the terms & conditions.

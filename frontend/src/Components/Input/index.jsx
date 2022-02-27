@@ -9,6 +9,7 @@ export default function Input({
   name,
   onChange,
   errorMessage,
+  refs
 }) {
   return label ? (
     <motion.div
@@ -27,6 +28,7 @@ export default function Input({
         type={type}
         placeholder={placeholder}
         className="input-main"
+        ref={refs}
       />
       {success ? (
         <i className="fas successicon fa-check-circle"></i>
