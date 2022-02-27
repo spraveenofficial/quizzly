@@ -9,8 +9,12 @@ import {
   categoryVariant,
   categoryItemVariants,
 } from "../../helpers/categoryAnimation";
+import { useNavigate } from "react-router-dom";
 const Home = () => {
-  const [toast, setToast] = useState(false);
+  const navigate = useNavigate();
+  const switchQuiz = (path) => {
+    navigate(`/quiz/${path}`);
+  };
   return (
     <Container>
       <motion.div variants={categoryVariant} initial="hidden" animate={"show"}>
@@ -28,14 +32,14 @@ const Home = () => {
                   questionAmount={quiz.questionsCount}
                   thumbnail={quiz.thumbnail}
                   marks={quiz.marks}
-                  onClick={() => setToast(() => !toast)}
+                  onClick={() => switchQuiz(quiz.path)}
                 />
               </motion.div>
             );
           })}
         </div>
       </motion.div>
-      {toast && <Toast />}
+      {/* {toast && <Toast />} */}
     </Container>
   );
 };

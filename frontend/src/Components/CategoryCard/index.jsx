@@ -5,10 +5,10 @@ export default function CategoryCard({
   questionAmount,
   thumbnail,
   marks,
-  onClick
+  onClick,
 }) {
   return (
-    <div onClick={onClick}className="card-img card-width">
+    <div onClick={onClick} className="card-img card-width">
       <img src={thumbnail} alt="data" />
       <div className="card_data">
         <p>{title}</p>

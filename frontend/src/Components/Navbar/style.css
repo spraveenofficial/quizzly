@@ -82,8 +82,11 @@ nav {
 }
 .mobnavitems a{
     margin: 15px 0px;
-    /* opacity: 0.6; */
     flex-direction: column;
     color: var(--white);
     text-decoration: none;
+}
+
+.mobnavitems p{
+  margin-top: 0.625rem;
 }

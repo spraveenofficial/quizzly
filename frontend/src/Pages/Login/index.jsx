@@ -20,18 +20,18 @@ export default function Login() {
   const { loading, message, success } = useSelector((state) => state.login);
   const handleSubmit = () => {
     const validateResult = loginValidate(userInput);
-    console.log(validateResult)
-    setErrors( validateResult);
+    console.log(validateResult);
+    setErrors(validateResult);
     if (validateResult[0].success && validateResult[1].success) {
       dispatch(login(userInput.email, userInput.password));
     }
   };
   useEffect(() => {
-    success == true &&
+    success === true &&
       setTimeout(() => {
         dispatch(loadUser());
       }, 1000);
-  }, [success]);
+  }, [success, dispatch]);
   return (
     <Container>
       <motion.div

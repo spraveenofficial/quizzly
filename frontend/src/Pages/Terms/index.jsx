@@ -2,7 +2,26 @@ import Container from "../../Components/Container";
 import "./style.css";
 import { motion } from "framer-motion";
 import animation from "../../helpers/animation";
-export default function Terms() {
+import { useState } from "react";
+import Toast from "../../Components/Toast";
+import { useNavigate } from "react-router-dom";
+export default function Terms({ onNext }) {
+  const navigate = useNavigate();
+  const [isChecked, setChecked] = useState(false);
+  const [toast, setToast] = useState(false);
+  const changeCheckbox = () => {
+    setChecked(() => !isChecked);
+  };
+  const setNext = () => {
+    if (!isChecked) {
+      setToast(!toast);
+      return;
+    }
+    isChecked && onNext();
+  };
+  const pushBack = () => {
+    navigate("/");
+  };
   return (
     <Container>
       <motion.div
@@ -45,12 +64,25 @@ export default function Terms() {
             name="checkbox"
             value="true"
             className="checkbox mt-10"
+            onChange={(e) => {
+              changeCheckbox({
+                target: {
+                  name: e.target.name,
+                  value: e.target.checked,
+                },
+              });
+            }}
           />
           <label htmlFor="checkbox">I agree, all the terms & conditions.</label>
           <br />
         </div>
-        <button className="btn full-width mt-10">Agree</button>
-        <button className="btn full-width mt-10">Not Agree</button>
+        <button onClick={() => setNext()} className="btn full-width mt-10">
+          Agree
+        </button>
+        <button onClick={() => pushBack()} className="btn full-width mt-10">
+          Not Agree
+        </button>
+        {toast && <Toast message="Please Agree T&C for starting Quiz." />}
       </motion.div>
     </Container>
   );

@@ -1,0 +1,40 @@
+{
+  "title": "neogKnowledge 2022",
+  "path": "neog-knowledge",
+  "marks": 50,
+  "timeRequired": 4000,
+  "difficulty": "easy",
+  "noOfQuestions": 10,
+  "questions": [
+    {
+      "question": "Who is the Owner of neoGcamp ?",
+      "options": ["Tanay", "Tanvi", "Akanksha", "None of The Above"],
+      "correctAnswer": "Tanvi"
+    },
+    {
+      "question": "In which Month of 2022 batch of neoG has started?",
+      "options": ["January", "Februrary", "March", "June"],
+      "correctAnswer": "Tanvi"
+    },
+    {
+      "question": "When The Hiring will begin for neoG Batch'22",
+      "options": ["January", "Februrary", "March", "June"],
+      "correctAnswer": "June"
+    },
+    {
+      "question": "Who'is the Super Mentor?",
+      "options": [
+        "Tanay Pratap",
+        "Ankit Singhania",
+        "Vikram Sinthalia",
+        "Arpan Mondal"
+      ],
+      "correctAnswer": "Tanay Pratap"
+    },
+    {
+      "question": "What is the Fees of This Web Dev Bootcamp?",
+      "options": ["30k", "34k", "33k", "35k"],
+      "correctAnswer": "34k"
+    }
+  ]
+}
