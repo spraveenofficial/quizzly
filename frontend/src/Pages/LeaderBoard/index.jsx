@@ -2,11 +2,12 @@ import Toast from "../../Components/Toast";
 import "./style.css";
 import { Helmet } from "react-helmet";
 import Container from "../../Components/Container";
-import { motion } from "framer-motion";
+import { motion, AnimateSharedLayout } from "framer-motion";
 import Confetti from "../../Components/Confetti";
 import topperImg from "../../Components/Icons/topper.json";
 import Lottie from "react-lottie";
 import animation from "../../helpers/animation";
+import LeaderBoardList from "./items";
 export default function LeaderBoard() {
   const defaultOptions = {
     loop: true,
@@ -17,6 +18,7 @@ export default function LeaderBoard() {
       preserveAspectRatio: "xMidYMid slice",
     },
   };
+  const items = [0, 1, 2];
   return (
     <Container>
       <Helmet>
@@ -45,8 +47,15 @@ export default function LeaderBoard() {
             <h3>Score: 1200</h3>
           </div>
         </div>
-        <p>User 2</p>
-        <p>User 3</p>
+        <div className="leaderboard-items mt-20">
+          <AnimateSharedLayout>
+            <motion.ul layout initial={{ borderRadius: 25 }}>
+              {items.map((item) => (
+                <LeaderBoardList key={item} />
+              ))}
+            </motion.ul>
+          </AnimateSharedLayout>
+        </div>
       </motion.div>
       <Toast />
       <Confetti />

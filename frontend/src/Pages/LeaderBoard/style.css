@@ -15,3 +15,50 @@
   flex-direction: column;
   align-items: center;
 }
+
+.leaderboard-item-parent ul {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.leaderboard-item-li {
+  background-color: #171b24;
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 20px;
+  overflow: hidden;
+  cursor: pointer;
+  position: relative;
+}
+
+.leaderboard-item-li:last-child {
+  margin-bottom: 0px;
+}
+
+.leaderboard-item-parent .avatar {
+  width: 40px;
+  height: 40px;
+  background-color: #666;
+  border-radius: 20px;
+  align-items: center;
+}
+.leaderboard-item-parent .avatar p {
+  top: 27px;
+  position: absolute;
+  left: 34px;
+  font-size: 21px;
+  font-weight: 500;
+  font-family: monospace;
+}
+
+.leaderboard-item-parent {
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
+  align-items: center;
+}
+
+.leaderboard-item-parent h2{
+    font-size: 20px;
+}

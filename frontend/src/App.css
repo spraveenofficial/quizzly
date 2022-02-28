@@ -105,6 +105,9 @@ a{
 .mt-10{
   margin-top: 0.625rem;
 }
+.mt-20{
+  margin-top: 1.25rem;
+}
 .inherit-font{
   font-family: inherit;
 }
