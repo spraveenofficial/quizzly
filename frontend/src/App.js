@@ -11,7 +11,8 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { loadUser, getUser } from "./Redux/Actions/auth";
 import LoadingPage from "./Pages/LoadingPage";
-import Question from "./Pages/Question";
+import Quiz from "./Pages/Quiz";
+import Profile from "./Pages/Profile";
 function App() {
   const dispatch = useDispatch();
   const { loading } = useSelector((state) => state.auth);
@@ -35,7 +36,8 @@ function App() {
               <Route path="/" exact={true} element={<Home />} />
               <Route path="/leaderboard" element={<LeaderBoard />} />
               <Route path="/terms" element={<Terms />} />
-              <Route path="/quiz/:id" element={<Question />} />
+              <Route path="/quiz/:id" element={<Quiz />} />
+              <Route path="/profile" element={<Profile />} />
             </Route>
             <Route element={<GuestRoutes />}>
               <Route path="/login" element={<Login />} />

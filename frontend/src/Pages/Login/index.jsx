@@ -10,6 +10,7 @@ import Loader from "../../Components/Loader";
 import { useEffect, useState } from "react";
 import { loadUser } from "../../Redux/Actions/auth";
 import { loginValidate } from "../../helpers/validate";
+import { Helmet } from "react-helmet";
 export default function Login() {
   const dispatch = useDispatch();
   const [userInput, setUserInput] = useState({ email: "", password: "" });
@@ -34,6 +35,10 @@ export default function Login() {
   }, [success, dispatch]);
   return (
     <Container>
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>Login - Quizzly</title>
+      </Helmet>
       <motion.div
         initial="hidden"
         animate="show"

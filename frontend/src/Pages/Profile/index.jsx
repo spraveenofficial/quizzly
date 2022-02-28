@@ -1,14 +1,14 @@
-import Toast from "../../Components/Toast";
 import { Helmet } from "react-helmet";
 import Container from "../../Components/Container";
-export default function LeaderBoard() {
+import "./style.css";
+
+export default function Profile() {
   return (
     <Container>
       <Helmet>
         <meta charSet="utf-8" />
-        <title>LeaderBoard - Quizzly</title>
+        <title>Profile - Quizzly</title>
       </Helmet>
-      <Toast />
     </Container>
   );
 }

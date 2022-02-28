@@ -10,6 +10,7 @@ import { signup } from "../../Redux/Actions/user";
 import { useState } from "react";
 import Loader from "../../Components/Loader";
 import { signupValidate } from "../../helpers/validate";
+import { Helmet } from "react-helmet";
 export default function Signup() {
   const dispatch = useDispatch();
   const { loading, message, success } = useSelector((state) => state.register);
@@ -41,6 +42,10 @@ export default function Signup() {
 
   return (
     <Container>
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>Signup - Quizzly</title>
+      </Helmet>
       <motion.div
         initial="hidden"
         animate="show"

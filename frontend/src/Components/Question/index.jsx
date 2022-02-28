@@ -5,6 +5,7 @@ import animation from "../../helpers/animation";
 import quizQuestion from "./question.json";
 import { useState } from "react";
 import Toast from "../Toast";
+import { Helmet } from "react-helmet";
 export default function Question() {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const thisQuestion = quizQuestion.questions[currentQuestion];
@@ -19,6 +20,10 @@ export default function Question() {
   };
   return (
     <Container>
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>{quizQuestion.title} - Quizzly</title>
+      </Helmet>
       <motion.div
         initial="hidden"
         animate="show"

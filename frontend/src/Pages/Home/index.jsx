@@ -10,6 +10,7 @@ import {
   categoryItemVariants,
 } from "../../helpers/categoryAnimation";
 import { useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet";
 const Home = () => {
   const navigate = useNavigate();
   const switchQuiz = (path) => {
@@ -18,6 +19,10 @@ const Home = () => {
   return (
     <Container>
       <motion.div variants={categoryVariant} initial="hidden" animate={"show"}>
+        <Helmet>
+          <meta charSet="utf-8" />
+          <title>Home - Quizzly</title>
+        </Helmet>
         <div className="main_data">
           {data.map((quiz, index) => {
             return (

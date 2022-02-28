@@ -5,6 +5,7 @@ import animation from "../../helpers/animation";
 import { useState } from "react";
 import Toast from "../../Components/Toast";
 import { useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet";
 export default function Terms({ onNext }) {
   const navigate = useNavigate();
   const [isChecked, setChecked] = useState(false);
@@ -24,6 +25,10 @@ export default function Terms({ onNext }) {
   };
   return (
     <Container>
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>Rules - Quizzly</title>
+      </Helmet>
       <motion.div
         className="terms-and-condition"
         initial="hidden"
