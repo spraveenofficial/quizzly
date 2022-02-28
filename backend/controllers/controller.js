@@ -1,6 +1,6 @@
 import userModel from "../models/user.js";
 import token from "../utils/tokens.js";
-
+import encryptionServices from "../services/encryption-services.js";
 class MainController {
   async signup(req, res) {
     const { name, email, password } = req.body;
@@ -100,13 +100,6 @@ class MainController {
         data: response,
       });
     }
-
-    // userModel.findOne({ email }).then((response) => {
-    //   return res.json({
-    //     message: "Data retreived",
-    //     data: response,
-    //   });
-    // });
   }
   async profile(req, res) {
     const { email } = req.body;
@@ -114,6 +107,27 @@ class MainController {
       return res.json({
         data: response,
       });
+    });
+  }
+  async leaderBoard(req, res) {
+    const user = await userModel.find();
+    const haveCompletedQuiz = new Array(user.find((x) => x.completedQuiz));
+    const newArray = haveCompletedQuiz.map((eachUser) => {
+      return {
+        name: eachUser.name,
+        email: eachUser.email,
+        totalScore: eachUser.completedQuiz.reduce(
+          (a, b) => Number(a) + Number(b["score"]),
+          0
+        ),
+      };
+    });
+    const encryptedData = await encryptionServices.encrypt(newArray);
+    return res.json({
+      message: "Successfully Retrieved",
+      statusCode: 200,
+      data: encryptedData,
+      success: true,
     });
   }
 }

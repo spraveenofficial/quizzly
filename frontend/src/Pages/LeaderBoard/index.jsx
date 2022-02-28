@@ -1,4 +1,3 @@
-import Toast from "../../Components/Toast";
 import "./style.css";
 import { Helmet } from "react-helmet";
 import Container from "../../Components/Container";
@@ -8,7 +7,11 @@ import topperImg from "../../Components/Icons/topper.json";
 import Lottie from "react-lottie";
 import animation from "../../helpers/animation";
 import LeaderBoardList from "./items";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { leaderBoard } from "../../Redux/Actions/leaderboard";
 export default function LeaderBoard() {
+  const dispatch = useDispatch();
   const defaultOptions = {
     loop: true,
     autoplay: true,
@@ -18,6 +21,10 @@ export default function LeaderBoard() {
       preserveAspectRatio: "xMidYMid slice",
     },
   };
+  const { loading, data, success } = useSelector((state) => state.leaderBoard);
+  useEffect(() => {
+    dispatch(leaderBoard());
+  }, []);
   const items = [0, 1, 2];
   return (
     <Container>
@@ -57,7 +64,6 @@ export default function LeaderBoard() {
           </AnimateSharedLayout>
         </div>
       </motion.div>
-      <Toast />
       <Confetti />
     </Container>
   );

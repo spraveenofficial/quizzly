@@ -9,5 +9,6 @@ app.post("/login", Controller.login);
 app.get("/completedquiz", Controller.updateUserCompletedQuiz);
 app.get("/profile", Controller.profile);
 app.get("/verify", middleware, Controller.verifyUser);
+app.get("/leaderboard", middleware, Controller.leaderBoard);
 
 export default app;

@@ -1,0 +1,48 @@
+[
+  {
+    "_id": "62169682465d1a10304fbc38",
+    "name": "Praveen Singh",
+    "email": "spraveen593@gmail.com",
+    "password": "$2a$10$8TacF/Y/V4NttIswlgW91Od1f13AAdqENxJlgNrLIRLIQ38n4AeLa",
+    "isAdmin": true,
+    "completedQuiz": [
+      {
+        "id": 7,
+        "score": 70,
+        "timeTaken": 10
+      },
+      {
+        "id": 1,
+        "score": 10,
+        "timeTaken": 10
+      }
+    ],
+    "incompleteQuiz": [],
+    "createdAt": "2022-02-23T20:18:10.364Z",
+    "updatedAt": "2022-02-23T20:21:48.179Z",
+    "__v": 0
+  },
+  {
+    "_id": "62169682465d1a10304fbc38",
+    "name": "Tanay Singh",
+    "email": "spraveen593@gmail.com",
+    "password": "$2a$10$8TacF/Y/V4NttIswlgW91Od1f13AAdqENxJlgNrLIRLIQ38n4AeLa",
+    "isAdmin": true,
+    "completedQuiz": [
+      {
+        "id": 77,
+        "score": 30,
+        "timeTaken": 10
+      },
+      {
+        "id": 19,
+        "score": 90,
+        "timeTaken": 10
+      }
+    ],
+    "incompleteQuiz": [],
+    "createdAt": "2022-02-23T20:18:10.364Z",
+    "updatedAt": "2022-02-23T20:21:48.179Z",
+    "__v": 0
+  }
+]
