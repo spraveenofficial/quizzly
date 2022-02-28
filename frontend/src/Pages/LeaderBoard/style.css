@@ -1,0 +1,17 @@
+.top-on-leaderboard {
+  min-height: 180px;
+  display: flex;
+  border: 1px solid white;
+  border-radius: 5px;
+  padding: 1rem;
+}
+.top-left,
+.top-right {
+  min-width: 50%;
+}
+.top-right {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
