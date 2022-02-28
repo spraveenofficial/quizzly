@@ -34,11 +34,11 @@ function App() {
           <Routes>
             <Route element={<ProtectedRoutes />}>
               <Route path="/" exact={true} element={<Home />} />
-              <Route path="/leaderboard" element={<LeaderBoard />} />
               <Route path="/terms" element={<Terms />} />
               <Route path="/quiz/:id" element={<Quiz />} />
               <Route path="/profile" element={<Profile />} />
             </Route>
+            <Route path="/leaderboard" element={<LeaderBoard />} />
             <Route element={<GuestRoutes />}>
               <Route path="/login" element={<Login />} />
               <Route path="/signup" element={<Signup />} />

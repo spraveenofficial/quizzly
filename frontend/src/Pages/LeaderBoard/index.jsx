@@ -37,8 +37,8 @@ export default function LeaderBoard() {
             <Lottie
               isClickToPauseDisabled
               options={defaultOptions}
-              width={200}
-              height={300}
+              width="100"
+              height="100"
             />
           </div>
           <div className="top-right">

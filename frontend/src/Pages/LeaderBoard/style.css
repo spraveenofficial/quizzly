@@ -9,7 +9,7 @@
 .top-right {
   min-width: 50%;
 }
-.top-right {
+.top-right, .top-left div {
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -59,6 +59,22 @@
   align-items: center;
 }
 
-.leaderboard-item-parent h2{
+.leaderboard-item-parent h2 {
+  font-size: 20px;
+}
+.top-left div svg{
+  width: 80% !important;
+}
+
+@media (max-width: 767px) {
+  .leaderboard-item-parent h2 {
+    font-size: 12px;
+  }
+  .leaderboard-item-parent p{
+    font-size: 12px;
+  }
+  .leaderboard-item-parent .avatar p{
     font-size: 20px;
+    font-weight: 900;
+  }
 }
