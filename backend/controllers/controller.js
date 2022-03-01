@@ -1,4 +1,5 @@
 import userModel from "../models/user.js";
+import quizModel from "../models/quiz.js";
 import token from "../utils/tokens.js";
 import encryptionServices from "../services/encryption-services.js";
 class MainController {
@@ -135,6 +136,35 @@ class MainController {
       data: encryptedData,
       success: true,
     });
+  }
+  async createQuiz(req, res) {
+    const { id } = req.data;
+    const user = await userModel.findOne({ _id: id });
+    if (!user.isAdmin) {
+      return res.json({
+        message: "You, are not admin",
+        success: false,
+        statusCode: 404,
+      });
+    } else {
+      const newQuiz = new quizModel(req.body);
+      newQuiz
+        .save()
+        .then(() => {
+          return res.json({
+            message: "Successfully Created Quiz",
+            success: true,
+            statusCode: 200,
+          });
+        })
+        .catch((err) => {
+          return res.json({
+            message: "Unable to Create Quiz",
+            success: false,
+            statusCode: 500,
+          });
+        });
+    }
   }
 }
 
