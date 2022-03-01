@@ -5,6 +5,7 @@ import {
 } from "../Constants/types";
 import axios from "axios";
 import baseUrl from "../../baseurl";
+import decrypt from "../../helpers/decrypt";
 export const leaderBoard = () => async (dispatch) => {
   try {
     dispatch({
@@ -18,6 +19,7 @@ export const leaderBoard = () => async (dispatch) => {
         token: `Bearer ${token}`,
       },
     });
+    const decryptedData = await decrypt(data.data);
     if (!data.success) {
       dispatch({
         type: LEADERBOARD_REQUEST_FAILED,
@@ -25,7 +27,7 @@ export const leaderBoard = () => async (dispatch) => {
     } else {
       dispatch({
         type: LEADERBOARD_REQUEST_SUCCESS,
-        payload: data.data,
+        payload: decryptedData,
       });
     }
   } catch (error) {

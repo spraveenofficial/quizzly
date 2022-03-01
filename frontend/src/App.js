@@ -37,8 +37,8 @@ function App() {
               <Route path="/terms" element={<Terms />} />
               <Route path="/quiz/:id" element={<Quiz />} />
               <Route path="/profile" element={<Profile />} />
+              <Route path="/leaderboard" element={<LeaderBoard />} />
             </Route>
-            <Route path="/leaderboard" element={<LeaderBoard />} />
             <Route element={<GuestRoutes />}>
               <Route path="/login" element={<Login />} />
               <Route path="/signup" element={<Signup />} />

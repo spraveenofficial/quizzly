@@ -17,12 +17,12 @@
       "correctAnswer": "Tanvi"
     },
     {
-      "question": "When The Hiring will begin for neoG Batch'22",
-      "options": ["January", "Februrary", "March", "June"],
+      "question": "When The Hiring will begin for neoG Batch'22 ?",
+      "options": ["September", "July", "August", "June"],
       "correctAnswer": "June"
     },
     {
-      "question": "Who'is the Super Mentor?",
+      "question": "Who's the Super Mentor?",
       "options": [
         "Tanay Pratap",
         "Ankit Singhania",

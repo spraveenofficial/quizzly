@@ -5,8 +5,7 @@ const decrypt = async (data) => {
     data,
     process.env.REACT_APP_ENCRYPTION_KEY
   );
-  var decryptedData = bytes.toString(CryptoJS.enc.Utf8);
-  console.log(decryptedData);
+  var decryptedData = JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
   return decryptedData;
 };
 
