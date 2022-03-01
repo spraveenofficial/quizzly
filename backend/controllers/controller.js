@@ -70,6 +70,7 @@ class MainController {
       data: {
         name: user.name,
         email: user.email,
+        isAdmin: user.isAdmin,
       },
     });
   }

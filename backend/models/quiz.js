@@ -14,6 +14,10 @@ const quizSchema = new mongoose.Schema(
       type: Number,
       required: true,
     },
+    thumbnail: {
+      type: String,
+      required: true,
+    },
     difficulty: {
       type: String,
       required: true,
