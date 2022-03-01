@@ -111,6 +111,12 @@ class MainController {
   }
   async leaderBoard(req, res) {
     const user = await userModel.find();
+    if (!user) {
+      return res.json({
+        message: "No user Found on LeaderBoard",
+        success: false,
+      });
+    }
     const haveCompletedQuiz = new Array(user.find((x) => x.completedQuiz));
     const newArray = haveCompletedQuiz.map((eachUser) => {
       return {

@@ -3,21 +3,37 @@ import Container from "../Container";
 import { motion } from "framer-motion";
 import animation from "../../helpers/animation";
 import quizQuestion from "./question.json";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Toast from "../Toast";
 import { Helmet } from "react-helmet";
-export default function Question() {
+export default function Question({ onNext }) {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const thisQuestion = quizQuestion.questions[currentQuestion];
+  const [totalTimer, setTotalTimer] = useState(20);
   const [toast, setToast] = useState(false);
   const nextQuestion = () => {
     const upcomingQuestion = currentQuestion + 1;
     if (upcomingQuestion < quizQuestion.questions.length) {
       setCurrentQuestion(upcomingQuestion);
     } else {
-      setToast(true);
+      onNext();
     }
   };
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (totalTimer === 0) {
+        clearTimeout(interval);
+      } else {
+        setTotalTimer((prev) => prev - 1);
+      }
+    }, 1000);
+    return () => {
+      clearInterval(interval);
+    };
+  }, [totalTimer]);
+
+  var minutes = Math.floor(totalTimer / 60);
+  var seconds = totalTimer - minutes * 60;
   return (
     <Container>
       <Helmet>
@@ -33,6 +49,9 @@ export default function Question() {
         <div className="header">
           <h2 className="text-center">{thisQuestion.question}</h2>
         </div>
+        <p>
+          Timer: {minutes}.{seconds} min
+        </p>
         <div className="question">
           <div className="score">
             <p>
