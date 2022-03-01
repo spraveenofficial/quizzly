@@ -1,0 +1,13 @@
+.quiz-box-main {
+  margin: 20px 0px;
+}
+
+.checkbox-option-correct input {
+  align-items: center;
+  text-align: inherit;
+}
+.checkbox-option-correct {
+  margin: auto;
+  display: block;
+}
+

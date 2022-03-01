@@ -6,6 +6,7 @@ import Signup from "./Pages/Signup/index";
 import Login from "./Pages/Login";
 import LeaderBoard from "./Pages/LeaderBoard";
 import Terms from "./Pages/Terms";
+import CreateQuiz from "./Pages/CreateQuiz";
 import { GuestRoutes, ProtectedRoutes } from "./helpers/Routes";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -38,6 +39,7 @@ function App() {
               <Route path="/quiz/:id" element={<Quiz />} />
               <Route path="/profile" element={<Profile />} />
               <Route path="/leaderboard" element={<LeaderBoard />} />
+              <Route path="/createquiz" element={<CreateQuiz />} />
             </Route>
             <Route element={<GuestRoutes />}>
               <Route path="/login" element={<Login />} />

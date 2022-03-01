@@ -111,7 +111,27 @@ a{
 .inherit-font{
   font-family: inherit;
 }
-
+.align-center{
+  align-items: center;
+}
+.flex{
+  display: flex;
+}
+.justify-between{
+  justify-content: space-between;
+}
+.justify-last{
+  justify-content: flex-end;
+}
+.gap10{
+  gap: 10px;
+}
+.border-bottom{
+  border-bottom: 1px solid var(--white);
+}
+.pb-10{
+  padding-bottom: 0.625rem;
+}
 /* Webkit Scrollbar */
 
 ::-webkit-scrollbar {
