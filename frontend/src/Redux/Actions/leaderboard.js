@@ -19,8 +19,7 @@ export const leaderBoard = () => async (dispatch) => {
         token: `Bearer ${token}`,
       },
     });
-    const decryptedData = await decrypt(data.data);
-    console.log(JSON.parse(decryptedData));
+    // const decryptedData = await decrypt(data.data);
     if (!data.success) {
       dispatch({
         type: LEADERBOARD_REQUEST_FAILED,
@@ -28,7 +27,7 @@ export const leaderBoard = () => async (dispatch) => {
     } else {
       dispatch({
         type: LEADERBOARD_REQUEST_SUCCESS,
-        payload: JSON.parse(decryptedData),
+        payload: data.data,
       });
     }
   } catch (error) {

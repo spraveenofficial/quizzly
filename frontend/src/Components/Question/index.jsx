@@ -4,28 +4,31 @@ import { motion } from "framer-motion";
 import animation from "../../helpers/animation";
 import quizQuestion from "./question.json";
 import { useEffect, useState } from "react";
-import Toast from "../Toast";
 import { Helmet } from "react-helmet";
+import { useDispatch, useSelector } from "react-redux";
+import { scoreChange } from "../../Redux/Actions/score";
 export default function Question({ onNext }) {
+  const dispatch = useDispatch();
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const thisQuestion = quizQuestion.questions[currentQuestion];
-  const [totalTimer, setTotalTimer] = useState(20);
-  const [toast, setToast] = useState(false);
-  const nextQuestion = () => {
-    const upcomingQuestion = currentQuestion + 1;
-    if (upcomingQuestion < quizQuestion.questions.length) {
-      setCurrentQuestion(upcomingQuestion);
-    } else {
-      onNext();
+  const [totalTimer, setTotalTimer] = useState(quizQuestion.timeRequired);
+  const { score } = useSelector((state) => state.score);
+  const nextQuestion = (e) => {
+    const optionSelected = e.target.textContent;
+    if (optionSelected === thisQuestion.correctAnswer) {
+      dispatch(scoreChange(1));
     }
+    const upcomingQuestion = currentQuestion + 1;
+    upcomingQuestion < quizQuestion.questions.length
+      ? setCurrentQuestion(upcomingQuestion)
+      : onNext();
   };
+
   useEffect(() => {
     const interval = setInterval(() => {
-      if (totalTimer === 0) {
-        clearTimeout(interval);
-      } else {
-        setTotalTimer((prev) => prev - 1);
-      }
+      totalTimer == 0
+        ? clearTimeout(interval)
+        : setTotalTimer((prev) => prev - 1);
     }, 1000);
     return () => {
       clearInterval(interval);
@@ -34,6 +37,7 @@ export default function Question({ onNext }) {
 
   var minutes = Math.floor(totalTimer / 60);
   var seconds = totalTimer - minutes * 60;
+
   return (
     <Container>
       <Helmet>
@@ -50,26 +54,22 @@ export default function Question({ onNext }) {
           <h2 className="text-center">{thisQuestion.question}</h2>
         </div>
         <p>
-          Timer: {minutes}.{seconds} min
+          Time Left: {minutes}.{seconds} {minutes > 1 ? "min" : "sec"}
         </p>
         <div className="question">
           <div className="score">
             <p>
               Questions: {currentQuestion + 1}/{quizQuestion.questions.length}
             </p>
-            <p>Score: 0</p>
+            <p>Score: {score}</p>
           </div>
           <div className="questions">
-            {/* <p>
-              Harvey Specter is considered one of New York's most brillant
-              corporate litigation lawyers, but what's his unusual middle name?
-            </p> */}
             <div className="options">
               {thisQuestion.options.map((item) => {
                 return (
                   <button
                     key={item}
-                    onClick={() => nextQuestion()}
+                    onClick={(e) => nextQuestion(e)}
                     className="btn full-width mt-10 inherit-font opt-button"
                   >
                     {item}
@@ -79,7 +79,6 @@ export default function Question({ onNext }) {
             </div>
           </div>
         </div>
-        {toast && <Toast message="Result Page Under Construction." />}
       </motion.div>
     </Container>
   );
