@@ -12,4 +12,5 @@ app.get("/verify", middleware, Controller.verifyUser);
 app.get("/leaderboard", middleware, Controller.leaderBoard);
 app.post("/create-quiz", middleware, Controller.createQuiz);
 app.get("/quiz", middleware, Controller.allQuiz);
+app.get("/quiz/:id", Controller.eachQuiz);
 export default app;

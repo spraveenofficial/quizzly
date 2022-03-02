@@ -173,7 +173,7 @@ class MainController {
     var results = await Promise.all(
       quiz.map(async (eachQuiz) => {
         return {
-          title: await encryptionServices.encryptCrypto(eachQuiz.title),
+          title: await encryptionServices.encrypt(eachQuiz.title),
           marks: eachQuiz.marks,
           questionsCount: eachQuiz.noOfQuestions,
           thumbnail: eachQuiz.thumbnail,
@@ -190,6 +190,37 @@ class MainController {
     } else {
       res.json({
         message: "Request Success",
+        success: true,
+        statusCode: 200,
+        data: results,
+      });
+    }
+  }
+  async eachQuiz(req, res) {
+    const id = req.params.id;
+    const quiz = await quizModel.findOne({ _id: id });
+    if (!quiz) {
+      res.json({
+        message: "Quiz Not Found",
+        success: false,
+        statusCode: 404,
+      });
+    } else {
+      const newArray = new Array(quiz);
+      var results = await Promise.all(
+        newArray.map(async (eachQuiz) => {
+          return {
+            id: eachQuiz._id,
+            title: await encryptionServices.encrypt(eachQuiz.title),
+            marks: eachQuiz.marks,
+            noOfQuestions: eachQuiz.noOfQuestions,
+            thumbnail: eachQuiz.thumbnail,
+            questions: await encryptionServices.encrypt(eachQuiz.questions),
+          };
+        })
+      );
+      return res.json({
+        message: "Successfully Retrieved",
         success: true,
         statusCode: 200,
         data: results,
