@@ -159,6 +159,7 @@ class MainController {
           });
         })
         .catch((err) => {
+          console.log(err);
           return res.json({
             message: "Unable to Create Quiz",
             success: false,
