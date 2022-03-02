@@ -168,6 +168,34 @@ class MainController {
         });
     }
   }
+  async allQuiz(req, res) {
+    const quiz = await quizModel.find();
+    var results = await Promise.all(
+      quiz.map(async (eachQuiz) => {
+        return {
+          title: await encryptionServices.encryptCrypto(eachQuiz.title),
+          marks: eachQuiz.marks,
+          questionsCount: eachQuiz.noOfQuestions,
+          thumbnail: eachQuiz.thumbnail,
+          path: eachQuiz._id,
+        };
+      })
+    );
+    if (!quiz) {
+      res.json({
+        message: "No Quiz Found",
+        success: false,
+        statusCode: 404,
+      });
+    } else {
+      res.json({
+        message: "Request Success",
+        success: true,
+        statusCode: 200,
+        data: results,
+      });
+    }
+  }
 }
 
 export default new MainController();
