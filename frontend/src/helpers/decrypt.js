@@ -1,4 +1,5 @@
-import CryptoJS from "crypto-js";
+// import CryptoJS from "crypto-js";
+var CryptoJS = require("crypto-js");
 
 const decrypt = async (data) => {
   if (typeof data === "string" || typeof data === "number") {
