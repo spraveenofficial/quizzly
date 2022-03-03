@@ -38,7 +38,7 @@
     ]
   },
   "browser": {
-    "crypto": false
+    "crypto": true
   },
   "browserslist": {
     "production": [
