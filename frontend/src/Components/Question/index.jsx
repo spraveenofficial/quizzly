@@ -2,16 +2,16 @@ import "./style.css";
 import Container from "../Container";
 import { motion } from "framer-motion";
 import animation from "../../helpers/animation";
-import quizQuestion from "./question.json";
 import { useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
 import { useDispatch, useSelector } from "react-redux";
 import { scoreChange } from "../../Redux/Actions/score";
-export default function Question({ onNext }) {
+
+export default function Question({ onNext, quiz }) {
   const dispatch = useDispatch();
   const [currentQuestion, setCurrentQuestion] = useState(0);
-  const thisQuestion = quizQuestion.questions[currentQuestion];
-  const [totalTimer, setTotalTimer] = useState(quizQuestion.timeRequired);
+  const thisQuestion = quiz[0].questions[currentQuestion];
+  const [totalTimer, setTotalTimer] = useState(quiz[0].timeRequired);
   const { score } = useSelector((state) => state.score);
   const nextQuestion = (e) => {
     const optionSelected = e.target.textContent;
@@ -19,7 +19,7 @@ export default function Question({ onNext }) {
       dispatch(scoreChange(1));
     }
     const upcomingQuestion = currentQuestion + 1;
-    upcomingQuestion < quizQuestion.questions.length
+    upcomingQuestion < quiz[0].questions.length
       ? setCurrentQuestion(upcomingQuestion)
       : onNext();
   };
@@ -42,7 +42,7 @@ export default function Question({ onNext }) {
     <Container>
       <Helmet>
         <meta charSet="utf-8" />
-        <title>{quizQuestion.title} - Quizzly</title>
+        <title>{quiz[0].title} - Quizzly</title>
       </Helmet>
       <motion.div
         initial="hidden"
@@ -59,7 +59,7 @@ export default function Question({ onNext }) {
         <div className="question">
           <div className="score">
             <p>
-              Questions: {currentQuestion + 1}/{quizQuestion.questions.length}
+              Questions: {currentQuestion + 1}/{quiz[0].questions.length}
             </p>
             <p>Score: {score}</p>
           </div>

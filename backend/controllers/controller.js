@@ -212,6 +212,7 @@ class MainController {
           return {
             id: eachQuiz._id,
             title: await encryptionServices.encrypt(eachQuiz.title),
+            timeRequired: eachQuiz.timeRequired,
             marks: eachQuiz.marks,
             noOfQuestions: eachQuiz.noOfQuestions,
             thumbnail: eachQuiz.thumbnail,

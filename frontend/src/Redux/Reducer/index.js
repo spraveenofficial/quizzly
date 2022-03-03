@@ -3,7 +3,7 @@ import { auth } from "./auth";
 import { register, login } from "./user";
 import { leaderBoard } from "./leaderboard";
 import { score } from "./score";
-import { addQuiz, homePageQuiz } from "./quiz";
+import { addQuiz, homePageQuiz, eachQuiz } from "./quiz";
 export default combineReducers({
   auth,
   register,
@@ -12,4 +12,5 @@ export default combineReducers({
   addQuiz,
   score,
   homePageQuiz,
+  eachQuiz,
 });

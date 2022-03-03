@@ -5,6 +5,9 @@ import {
   HOMEPAGE_LOAD_QUIZ_REQUEST,
   HOMEPAGE_LOAD_QUIZ_SUCCESS,
   HOMEPAGE_LOAD_QUIZ_FAILED,
+  LOAD_QUIZ_REQUEST,
+  LOAD_QUIZ_SUCCESS,
+  LOAD_QUIZ_FAILED,
 } from "../Constants/types";
 import baseUrl from "../../baseurl";
 import axios from "axios";
@@ -74,6 +77,42 @@ export const homePageQuiz = () => async (dispatch) => {
     console.log(error);
     dispatch({
       type: HOMEPAGE_LOAD_QUIZ_FAILED,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
+};
+
+export const eachQuiz = (params) => async (dispatch) => {
+  try {
+    dispatch({
+      type: LOAD_QUIZ_REQUEST,
+    });
+    const token = localStorage.getItem("token");
+    const { data } = await axios({
+      method: "GET",
+      url: `${baseUrl}/quiz/${params}`,
+      headers: {
+        token: `Bearer ${token}`,
+      },
+    });
+    if (!data.success) {
+      dispatch({
+        type: LOAD_QUIZ_FAILED,
+        payload: data.message,
+      });
+    } else {
+      dispatch({
+        type: LOAD_QUIZ_SUCCESS,
+        payload: data.data,
+      });
+    }
+  } catch (error) {
+    console.log(error);
+    dispatch({
+      type: LOAD_QUIZ_FAILED,
       payload:
         error.response && error.response.data.message
           ? error.response.data.message

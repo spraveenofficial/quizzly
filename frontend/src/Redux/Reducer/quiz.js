@@ -5,6 +5,9 @@ import {
   HOMEPAGE_LOAD_QUIZ_REQUEST,
   HOMEPAGE_LOAD_QUIZ_SUCCESS,
   HOMEPAGE_LOAD_QUIZ_FAILED,
+  LOAD_QUIZ_REQUEST,
+  LOAD_QUIZ_SUCCESS,
+  LOAD_QUIZ_FAILED,
 } from "../Constants/types";
 
 export const addQuiz = (
@@ -33,6 +36,22 @@ export const homePageQuiz = (
     case HOMEPAGE_LOAD_QUIZ_SUCCESS:
       return { loading: false, success: true, quiz: action.payload };
     case HOMEPAGE_LOAD_QUIZ_FAILED:
+      return { loading: false, success: false, quiz: null };
+    default:
+      return state;
+  }
+};
+
+export const eachQuiz = (
+  state = { loading: false, success: false, quiz: null },
+  action
+) => {
+  switch (action.type) {
+    case LOAD_QUIZ_REQUEST:
+      return { ...state, loading: true };
+    case LOAD_QUIZ_SUCCESS:
+      return { loading: false, success: true, quiz: action.payload };
+    case LOAD_QUIZ_FAILED:
       return { loading: false, success: false, quiz: null };
     default:
       return state;
