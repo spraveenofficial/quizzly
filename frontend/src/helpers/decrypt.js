@@ -24,6 +24,7 @@ import AES from 'crypto-js/aes';
 // export default decrypt;
 
 const DecryptHex = (encryptedStringHex) => {
+  console.log(encryptedStringHex)
   let chip = "AES";
   let skey = process.env.REACT_APP_ENCRYPTION_KEY
   let result = '';
@@ -39,7 +40,6 @@ const DecryptHex = (encryptedStringHex) => {
           }).toString(CryptoJS.enc.Utf8);
           console.log(skey);
           console.log('result : ', result);
-          console.log('$$$$');
       } else {
           result = array;
       }
