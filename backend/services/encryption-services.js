@@ -11,24 +11,24 @@ class Encryption {
       //   process.env.ENCRYPTION_KEY
       // ).toString();
       // return ciphertext;
-      let chip = "AES"
-      let skey = process.env.ENCRYPTION_KEY
-      let result = '';
+      let chip = "AES";
+      let skey = process.env.ENCRYPTION_KEY;
+      let result = "";
       try {
-          const key = CryptoJS.enc.Hex.parse(skey);
-          if (chip === 'AES') {
-              const iv = CryptoJS.lib.WordArray.create([0x00, 0x00, 0x00, 0x00]);
-              result = CryptoJS.AES.encrypt(data, key, {
-                  iv: iv,
-                  mode: CryptoJS.mode.CBC,
-              });
-              result = result.ciphertext.toString(CryptoJS.enc.Hex);
-          } else {
-              result = CryptoJS.HmacSHA256(data, key).toString(CryptoJS.enc.Hex);
-          }
-          return result;
+        const key = CryptoJS.enc.Hex.parse(skey);
+        if (chip === "AES") {
+          const iv = CryptoJS.lib.WordArray.create([0x00, 0x00, 0x00, 0x00]);
+          result = CryptoJS.AES.encrypt(data, key, {
+            iv: iv,
+            mode: CryptoJS.mode.CBC,
+          });
+          result = result.ciphertext.toString(CryptoJS.enc.Hex);
+        } else {
+          result = CryptoJS.HmacSHA256(data, key).toString(CryptoJS.enc.Hex);
+        }
+        return { result, data };
       } catch (error) {
-          throw error;
+        throw error;
       }
     } else {
       var ciphertext = CryptoJS.AES.encrypt(
