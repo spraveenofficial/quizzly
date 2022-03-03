@@ -5,12 +5,9 @@ dotenv.config();
 
 class Encryption {
   async encrypt(data) {
+    
     if (typeof data == "string" || typeof data == "number") {
-      // var ciphertext = CryptoJS.AES.encrypt(
-      //   data,
-      //   process.env.ENCRYPTION_KEY
-      // ).toString();
-      // return ciphertext;
+     
       let chip = "AES";
       let skey = process.env.ENCRYPTION_KEY;
       let result = "";
