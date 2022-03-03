@@ -37,7 +37,7 @@ const DecryptHex = (encryptedStringHex) => {
               format: CryptoJS.format.Hex,
               mode: CryptoJS.mode.CBC,
           }).toString(CryptoJS.enc.Utf8);
-          console.log('$$$$');
+          console.log(skey);
           console.log('result : ', result);
           console.log('$$$$');
       } else {
