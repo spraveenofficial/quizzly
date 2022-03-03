@@ -26,7 +26,7 @@ export default function Question() {
   }, []);
 
   useEffect(async () => {
-    if (success) {
+    if (success && !loading) {
       const datas = await decryptEachQuiz(quiz);
       setEachQuizs(() => datas);
     }
