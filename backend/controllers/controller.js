@@ -193,7 +193,6 @@ class MainController {
         success: true,
         statusCode: 200,
         data: results,
-        testing: "fmwafm"
       });
     }
   }
