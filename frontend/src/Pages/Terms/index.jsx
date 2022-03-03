@@ -6,7 +6,8 @@ import { useState } from "react";
 import Toast from "../../Components/Toast";
 import { useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet";
-export default function Terms({ onNext }) {
+export default function Terms({ onNext, quiz, loading }) {
+  console.log(quiz);
   const navigate = useNavigate();
   const [isChecked, setChecked] = useState(false);
   const [toast, setToast] = useState(false);
@@ -24,71 +25,80 @@ export default function Terms({ onNext }) {
     navigate("/");
   };
   return (
-    <Container>
-      <Helmet>
-        <meta charSet="utf-8" />
-        <title>Rules - Quizzly</title>
-      </Helmet>
-      <motion.div
-        className="terms-and-condition"
-        initial="hidden"
-        animate="show"
-        variants={animation}
-        exit="hidden"
-      >
-        <p>
-          <strong>Terms: </strong> Lorem ipsum dolor sit amet consectetur
-          adipisicing elit. Labore, perspiciatis. Dolor voluptatibus eos soluta
-          aliquam nobis quas tenetur natus, optio repellat ut commodi odio
-          excepturi dolorum sint inventore consequuntur illum.
-        </p>
-        <h2>Concent:</h2>
-        <p>
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente
-          consequuntur, impedit odio exercitationem velit amet id aperiam
-          pariatur maxime consequatur facere. A, ex quo nobis ducimus dolor
-          labore ratione soluta.
-        </p>
-        <h2>Cookies Information:</h2>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia, dolorem
-          temporibus eum deleniti pariatur aperiam vitae non amet! Eveniet iste
-          a id nihil fugiat nisi porro optio sunt exercitationem dicta!
-        </p>
-        <h2>Privacy:</h2>
-        <p>
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dolores
-          amet, nemo harum magni, animi et necessitatibus tenetur debitis,
-          mollitia consectetur ex optio qui cumque ea laborum magnam quis ipsum
-          unde!
-        </p>
-        <div className="remember">
-          <input
-            type="checkbox"
-            id="checkbox"
-            name="checkbox"
-            value="true"
-            className="checkbox mt-10"
-            onChange={(e) => {
-              changeCheckbox({
-                target: {
-                  name: e.target.name,
-                  value: e.target.checked,
-                },
-              });
-            }}
-          />
-          <label htmlFor="checkbox">I agree, all the terms & conditions.</label>
-          <br />
-        </div>
-        <button onClick={() => setNext()} className="btn full-width mt-10">
-          Agree
-        </button>
-        <button onClick={() => pushBack()} className="btn full-width mt-10">
-          Not Agree
-        </button>
-        {toast && <Toast message="Please Agree T&C for starting Quiz." />}
-      </motion.div>
-    </Container>
+    quiz.length === 1 && (
+      <Container>
+        <Helmet>
+          <meta charSet="utf-8" />
+          <title>Rules - Quizzly</title>
+        </Helmet>
+        <motion.div
+          className="terms-and-condition"
+          initial="hidden"
+          animate="show"
+          variants={animation}
+          exit="hidden"
+        >
+          <p className="text-center">
+            <strong>Terms for: </strong> {quiz[0].title}
+          </p>
+          <h2>Concent:</h2>
+          <p>
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente
+            consequuntur, impedit odio exercitationem velit amet id aperiam
+            pariatur maxime consequatur facere. A, ex quo nobis ducimus dolor
+            labore ratione soluta.
+          </p>
+          <h2>Cookies Information:</h2>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia,
+            dolorem temporibus eum deleniti pariatur aperiam vitae non amet!
+            Eveniet iste a id nihil fugiat nisi porro optio sunt exercitationem
+            dicta!
+          </p>
+          <h2>Rules:</h2>
+          <p>
+            1: Total no. of Questions: {quiz[0].questions.length}
+            <br />
+            2: {quiz[0].timeRequired / 60} Minutes Required to Complete this
+            Quiz.
+            <br />
+            3: Each Question Contains{" "}
+            {quiz[0].marks / quiz[0].questions.length}
+            Marks.
+            <br />
+            4: You will be Redirected to Result Page after completion of Quiz.
+          </p>
+
+          <div className="remember">
+            <input
+              type="checkbox"
+              id="checkbox"
+              name="checkbox"
+              value="true"
+              className="checkbox mt-10"
+              onChange={(e) => {
+                changeCheckbox({
+                  target: {
+                    name: e.target.name,
+                    value: e.target.checked,
+                  },
+                });
+              }}
+            />
+            <label htmlFor="checkbox">
+              I agree, all the terms & conditions.
+            </label>
+            <br />
+          </div>
+          <button onClick={() => setNext()} className="btn full-width mt-10">
+            Agree
+          </button>
+          <button onClick={() => pushBack()} className="btn full-width mt-10">
+            Not Agree
+          </button>
+          {toast && <Toast message="Please Agree T&C for starting Quiz." />}
+        </motion.div>
+      </Container>
+    )
   );
 }

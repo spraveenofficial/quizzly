@@ -43,7 +43,7 @@ export const homePageQuiz = (
 };
 
 export const eachQuiz = (
-  state = { loading: false, success: false, quiz: null },
+  state = { loading: false, success: false, quiz: null, error: false },
   action
 ) => {
   switch (action.type) {
@@ -52,7 +52,7 @@ export const eachQuiz = (
     case LOAD_QUIZ_SUCCESS:
       return { loading: false, success: true, quiz: action.payload };
     case LOAD_QUIZ_FAILED:
-      return { loading: false, success: false, quiz: null };
+      return { loading: false, success: false, quiz: null, error: true };
     default:
       return state;
   }

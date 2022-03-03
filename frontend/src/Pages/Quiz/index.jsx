@@ -5,19 +5,21 @@ import Result from "../Result";
 import { eachQuiz } from "../../Redux/Actions/quiz";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Loading from "../LoadingPage";
 import { decryptEachQuiz } from "../../helpers/decrypt";
 
 export default function Question() {
   // Using React Router dom Use Params for Getting the exact path of the url.
   const { id } = useParams();
-
+  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const [eachQuizs, setEachQuizs] = useState([]);
 
-  const { success, loading, quiz } = useSelector((state) => state.eachQuiz);
+  const { success, loading, quiz, error } = useSelector(
+    (state) => state.eachQuiz
+  );
 
   useEffect(() => {
     dispatch(eachQuiz(id));
@@ -26,9 +28,12 @@ export default function Question() {
   useEffect(async () => {
     if (success) {
       const datas = await decryptEachQuiz(quiz);
-      setEachQuizs(datas);
+      setEachQuizs(() => datas);
     }
-  }, [success]);
+    if (error) {
+      navigate("/");
+    }
+  }, [success, error]);
 
   const steps = {
     1: Terms,
