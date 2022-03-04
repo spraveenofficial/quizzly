@@ -46,7 +46,6 @@ const Home = () => {
               <title>Home - Quizzly</title>
             </Helmet>
             <div className="main_data">
-              {/* {success && <p>{quizs}</p>} */}
               {quizs.map((quiz, index) => {
                 return (
                   <motion.div

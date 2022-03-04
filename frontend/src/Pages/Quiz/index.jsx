@@ -3,6 +3,7 @@ import Questions from "../../Components/Question";
 import { useState } from "react";
 import Result from "../Result";
 import { eachQuiz } from "../../Redux/Actions/quiz";
+import { setBacktoNull } from "../../Redux/Actions/score";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
@@ -23,17 +24,18 @@ export default function Question() {
 
   useEffect(() => {
     dispatch(eachQuiz(id));
+    return () => {
+      console.log("Component Unmounted..");
+      dispatch(setBacktoNull());
+    };
   }, []);
 
   useEffect(async () => {
-    if (success) {
+    if (!loading && success) {
       const datas = await decryptEachQuiz(quiz);
       setEachQuizs(() => datas);
     }
-    if (error) {
-      navigate("/");
-    }
-  }, [success, error]);
+  }, [success, loading]);
 
   const steps = {
     1: Terms,
@@ -46,6 +48,8 @@ export default function Question() {
   return loading ? (
     <Loading />
   ) : (
-    <Step onNext={() => setStep((prev) => prev + 1)} quiz={eachQuizs} />
+    !loading && (
+      <Step onNext={() => setStep((prev) => prev + 1)} quiz={eachQuizs} />
+    )
   );
 }
