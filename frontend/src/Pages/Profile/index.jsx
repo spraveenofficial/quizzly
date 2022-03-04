@@ -10,6 +10,14 @@ import { useState } from "react";
 export default function Profile() {
   const [selectedTab, setSelectedTab] = useState(tabs[0]);
   const { user } = useSelector((state) => state.auth);
+  const rgx = new RegExp(/(\p{L}{1})\p{L}+/, "gu");
+
+  let initials = [...user.name.matchAll(rgx)] || [];
+
+  initials = (
+    (initials.shift()?.[1] || "") + (initials.pop()?.[1] || "")
+  ).toUpperCase();
+
   return (
     <Container>
       <Helmet>
@@ -25,7 +33,7 @@ export default function Profile() {
       >
         <div className="top-on-leaderboard">
           <div className="top-left profile-left">
-            <div className="badge">PS</div>
+            <div className="badge">{initials}</div>
           </div>
           <div className="top-right">
             <h2>{user.name}</h2>
