@@ -8,7 +8,7 @@ const initialState = {
   score: 0,
 };
 
-export const score = (state = initialState, action) => {
+export const quiz = (state = initialState, action) => {
   switch (action.type) {
     case SCORE_CHANGE:
       return { ...state, score: state.score + action.payload };

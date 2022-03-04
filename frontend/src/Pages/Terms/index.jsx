@@ -9,6 +9,8 @@ import { Helmet } from "react-helmet";
 export default function Terms({ onNext, quiz }) {
   const navigate = useNavigate();
   const [isChecked, setChecked] = useState(false);
+  const eachQuestionMarks =
+    quiz.length === 1 && quiz[0].marks / quiz[0].questions.length;
   const [toast, setToast] = useState(false);
   const changeCheckbox = () => {
     setChecked(() => !isChecked);
@@ -61,10 +63,10 @@ export default function Terms({ onNext, quiz }) {
             2: {quiz[0].timeRequired / 60} Minutes Required to Complete this
             Quiz.
             <br />
-            3: Each Question Contains {quiz[0].marks / quiz[0].questions.length}
-            Marks.
+            3: Each Question Contains {eachQuestionMarks}&nbsp;Marks.
             <br />
             4: You will be Redirected to Result Page after completion of Quiz.
+            <br />
           </p>
 
           <div className="remember">

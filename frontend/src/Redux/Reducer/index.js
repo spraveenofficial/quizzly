@@ -2,7 +2,7 @@ import { combineReducers } from "redux";
 import { auth } from "./auth";
 import { register, login } from "./user";
 import { leaderBoard } from "./leaderboard";
-import { score } from "./score";
+import { quiz } from "./score";
 import { addQuiz, homePageQuiz, eachQuiz } from "./quiz";
 export default combineReducers({
   auth,
@@ -10,7 +10,7 @@ export default combineReducers({
   login,
   leaderBoard,
   addQuiz,
-  score,
+  quiz,
   homePageQuiz,
   eachQuiz,
 });

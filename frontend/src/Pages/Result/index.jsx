@@ -5,7 +5,7 @@ import animation from "../../helpers/animation";
 import { useSelector } from "react-redux";
 import Button from "../../Components/Button";
 export default function Result({ quiz }) {
-  const { score, selectedOptions } = useSelector((state) => state.score);
+  const { score, selectedOptions } = useSelector((state) => state.quiz);
   const { marks, questions, title } = quiz[0];
   return (
     <Container>

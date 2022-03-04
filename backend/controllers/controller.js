@@ -75,7 +75,8 @@ class MainController {
     });
   }
   async updateUserCompletedQuiz(req, res) {
-    const { email } = req.body;
+    const { id } = req.data;
+    const { quizId, score, timeTaken } = req.body;
     try {
       userModel
         .updateOne(
@@ -83,7 +84,7 @@ class MainController {
           {
             $push: {
               completedQuiz: {
-                $each: [{ id: 7, score: 70, timeTaken: 10 }],
+                $each: [{ id: quizId, score: score, timeTaken: timeTaken }],
                 $sort: { score: -1 },
               },
             },

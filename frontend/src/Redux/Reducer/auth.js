@@ -9,7 +9,6 @@ export const auth = (
   state = { isAuthenticated: false, loading: true, user: null },
   action
 ) => {
-  console.log(action.type);
   switch (action.type) {
     case USER_LOAD_REQUEST:
       return { isAuthenticated: false, loading: true, user: null };

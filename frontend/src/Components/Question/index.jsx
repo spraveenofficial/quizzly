@@ -9,15 +9,17 @@ import { scoreChange, SelectAnswer } from "../../Redux/Actions/score";
 
 export default function Question({ onNext, quiz }) {
   const dispatch = useDispatch();
-  const { score } = useSelector((state) => state.score);
+  const { score } = useSelector((state) => state.quiz);
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const thisQuestion = quiz[0].questions[currentQuestion];
   const [totalTimer, setTotalTimer] = useState(quiz[0].timeRequired);
+  const eachQuestionMarks =
+    quiz.length === 1 && quiz[0].marks / quiz[0].questions.length;
   const nextQuestion = (e, id) => {
     const optionSelected = e.target.textContent;
     dispatch(SelectAnswer(id, optionSelected));
     if (optionSelected === thisQuestion.correctAnswer) {
-      dispatch(scoreChange(1));
+      dispatch(scoreChange(Number(eachQuestionMarks)));
     }
     const upcomingQuestion = currentQuestion + 1;
     upcomingQuestion < quiz[0].questions.length
