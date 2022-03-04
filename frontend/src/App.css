@@ -108,6 +108,9 @@ a{
 .mb-10{
   margin-bottom: 0.625rem;
 }
+.m-10{
+  margin: 0.625rem 0;
+}
 .mt-20{
   margin-top: 1.25rem;
 }

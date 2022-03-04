@@ -9,6 +9,9 @@ import {
   UPDATE_USER_QUIZ_REQUEST,
   UPDATE_USER_QUIZ_SUCCESS,
   UPDATE_USER_QUIZ_FAILED,
+  USER_RECENT_QUIZ_REQUEST,
+  USER_RECENT_QUIZ_SUCCESS,
+  USER_RECENT_QUIZ_FAILED,
 } from "../Constants/types";
 import baseUrl from "../../baseurl";
 import axios from "axios";
@@ -137,3 +140,39 @@ export const updateUserQuiz =
       });
     }
   };
+
+export const requestRecentQuiz = () => async (dispatch) => {
+  try {
+    dispatch({
+      type: USER_RECENT_QUIZ_REQUEST,
+    });
+    const token = localStorage.getItem("token");
+    const { data } = await axios({
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        token: `Bearer ${token}`,
+      },
+      url: `${baseUrl}/recent-quiz`,
+    });
+    if (!data.success) {
+      dispatch({
+        type: USER_RECENT_QUIZ_FAILED,
+        payload: data.message,
+      });
+    } else {
+      dispatch({
+        type: USER_RECENT_QUIZ_SUCCESS,
+        payload: data.data,
+      });
+    }
+  } catch (error) {
+    dispatch({
+      type: USER_RECENT_QUIZ_FAILED,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
+};

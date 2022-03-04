@@ -33,7 +33,7 @@ export default function Profile() {
       >
         <div className="top-on-leaderboard">
           <div className="top-left profile-left">
-            <div className="badge">{initials}</div>
+            <div className="badges">{initials}</div>
           </div>
           <div className="top-right">
             <h2>{user.name}</h2>
@@ -42,11 +42,11 @@ export default function Profile() {
         </div>
         <div className="window">
           <nav>
-            <ul>
+            <ul className="flex">
               {tabs.map((item) => (
                 <li
                   key={item.label}
-                  className={item === selectedTab ? "selected" : ""}
+                  className={item === selectedTab ? "selected flex" : "flex"}
                   onClick={() => setSelectedTab(item)}
                 >
                   {`${item.icon} ${item.label}`}

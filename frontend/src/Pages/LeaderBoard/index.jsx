@@ -59,7 +59,7 @@ export default function LeaderBoard() {
           <AnimateSharedLayout>
             <motion.ul layout initial={{ borderRadius: 25 }}>
               {items.map((item) => (
-                <LeaderBoardList key={item} />
+                <LeaderBoardList name={item.name} />
               ))}
             </motion.ul>
           </AnimateSharedLayout>

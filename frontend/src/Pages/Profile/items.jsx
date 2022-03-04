@@ -1,5 +1,33 @@
+import { requestRecentQuiz } from "../../Redux/Actions/user";
+import { useSelector, useDispatch } from "react-redux";
+import { useEffect } from "react";
+import { AnimateSharedLayout, motion } from "framer-motion";
+import Lists from "../LeaderBoard/items";
+import Loader from "../../Components/Loader";
 const RecentQuiz = () => {
-  return <h1>This is Recent Quiz</h1>;
+  const dispatch = useDispatch();
+  const { data, loading } = useSelector((state) => state.user);
+  console.log(data);
+  useEffect(() => {
+    dispatch(requestRecentQuiz());
+  }, []);
+  return loading ? (
+    <Loader />
+  ) : (
+    data && (
+      <>
+        <div className="leaderboard-items m-10">
+          <AnimateSharedLayout>
+            {/* <motion.ul layout initial={{ borderRadius: 25 }}> */}
+              {data.map((item) => (
+                <Lists thumbnail={item.thumbnail} name={item.title} />
+              ))}
+            {/* </motion.ul> */}
+          </AnimateSharedLayout>
+        </div>
+      </>
+    )
+  );
 };
 const PersonalDetail = () => {
   return <h1>This is Personal Detail</h1>;

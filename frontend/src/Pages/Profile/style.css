@@ -28,12 +28,9 @@
 }
 
 .window main {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  /* font-size: 128px; */
   flex-grow: 1;
   user-select: none;
+  height: 100%;
 }
 
 .window ul,
@@ -49,8 +46,9 @@
 }
 
 .window ul {
-  display: flex;
+  /* display: flex; */
   width: 100%;
+  gap: 10px;
 }
 
 .window li {
@@ -61,12 +59,7 @@
   padding: 10px 15px;
   position: relative;
   cursor: pointer;
-  height: 24px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex: 1;
-  min-width: 0;
+  height: 60px;
   position: relative;
   user-select: none;
 }
@@ -78,16 +71,22 @@
   width: 100%;
 }
 
-.badge{
-    background-color: #f89406;
-    height: 100px;
-    width: 100px;
-    border-radius: 50%;
-    font-size: 40px;
-    font-weight: 900;
+.badges {
+  background-color: #f89406;
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+  font-size: 40px;
+  font-weight: 900;
 }
-.profile-left{
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.profile-left {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+
+.leaderboard-items li{
+  margin: 10px 0px;
 }
