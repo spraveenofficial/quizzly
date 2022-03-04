@@ -10,6 +10,7 @@ import LeaderBoardList from "./items";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { leaderBoard } from "../../Redux/Actions/leaderboard";
+
 export default function LeaderBoard() {
   const dispatch = useDispatch();
   const defaultOptions = {

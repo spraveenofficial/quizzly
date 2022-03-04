@@ -137,8 +137,10 @@ const Navbar = () => {
               </Link>
               {isAuthenticated ? (
                 <p>
-                  <Link to={"/profile"}>{user.name}</Link>,{" "}
-                  <span onClick={() => handleLogout()}> &nbsp; Logout?</span>
+                  <Link onClick={() => hideNav()} to={"/profile"}>
+                    {user.name}
+                  </Link>
+                  , <span onClick={() => handleLogout()}> &nbsp; Logout?</span>
                 </p>
               ) : (
                 <Link onClick={() => hideNav()} to={"/login"}>
