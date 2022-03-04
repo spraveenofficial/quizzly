@@ -80,7 +80,7 @@ class MainController {
     try {
       userModel
         .updateOne(
-          { email },
+          { _id: id },
           {
             $push: {
               completedQuiz: {
@@ -93,14 +93,13 @@ class MainController {
         .exec()
         .then((response) => {
           return res.json({
-            message: "Data retreived",
-            data: response,
+            message: "Suceesfully Updated",
           });
         });
     } catch (error) {
       return res.json({
         message: "Data retreived",
-        data: response,
+        data: error,
       });
     }
   }
@@ -131,11 +130,11 @@ class MainController {
         ),
       };
     });
-    const encryptedData = await encryptionServices.encrypt(newArray);
+    // const encryptedData = await encryptionServices.encrypt(newArray);
     return res.json({
       message: "Successfully Retrieved",
       statusCode: 200,
-      data: encryptedData,
+      data: newArray,
       success: true,
     });
   }
@@ -227,6 +226,50 @@ class MainController {
         statusCode: 200,
         data: results,
       });
+    }
+  }
+  async recentQuiz(req, res) {
+    const { id } = req.data;
+    const user = await userModel.findOne({ _id: id });
+    !user &&
+      res.json({
+        message: "User not found",
+        statusCode: 404,
+        success: false,
+      });
+    if (user.completedQuiz.length == 0) {
+      res.json({
+        message: "You have not played any quiz yet.",
+        success: true,
+        statusCode: 200,
+      });
+    } else {
+      try {
+        const data = await Promise.all(
+          user.completedQuiz.map(async (eachQuiz) => {
+            const quizDB = await quizModel.findOne({ _id: eachQuiz.id });
+            return {
+              title: quizDB.title,
+              scored: eachQuiz.score,
+              totalMarks: quizDB.marks,
+              timeTaken: eachQuiz.timeTaken,
+              thumbnail: quizDB.thumbnail,
+            };
+          })
+        );
+        res.json({
+          message: "Successfully Retreived",
+          statusCode: 200,
+          success: true,
+          data: data,
+        });
+      } catch (error) {
+        res.json({
+          message: "SomeProblem happend in Server",
+          success: false,
+          statusCode: 501,
+        });
+      }
     }
   }
 }

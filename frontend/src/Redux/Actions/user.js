@@ -6,6 +6,9 @@ import {
   USER_LOGIN_SUCCESS,
   USER_LOGIN_FAIL,
   USER_LOGOUT,
+  UPDATE_USER_QUIZ_REQUEST,
+  UPDATE_USER_QUIZ_SUCCESS,
+  UPDATE_USER_QUIZ_FAILED,
 } from "../Constants/types";
 import baseUrl from "../../baseurl";
 import axios from "axios";
@@ -91,3 +94,46 @@ export const logout = () => async (dispatch) => {
   });
   localStorage.removeItem("token");
 };
+
+export const updateUserQuiz =
+  (quizId, score, timeTaken) => async (dispatch) => {
+    try {
+      dispatch({
+        type: UPDATE_USER_QUIZ_REQUEST,
+      });
+      const token = localStorage.getItem("token");
+      const { data } = await axios({
+        url: `${baseUrl}/completedquiz`,
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          token: `Bearer ${token}`,
+        },
+        data: {
+          quizId,
+          score,
+          timeTaken,
+        },
+      });
+      if (!data.success) {
+        dispatch({
+          type: UPDATE_USER_QUIZ_FAILED,
+          payload: data.message,
+        });
+      } else {
+        dispatch({
+          type: UPDATE_USER_QUIZ_SUCCESS,
+          payload: data.message,
+        });
+        localStorage.setItem("token", data.token);
+      }
+    } catch (error) {
+      dispatch({
+        type: UPDATE_USER_QUIZ_FAILED,
+        payload:
+          error.response && error.response.data.message
+            ? error.response.data.message
+            : error.message,
+      });
+    }
+  };

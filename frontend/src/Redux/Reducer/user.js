@@ -5,6 +5,9 @@ import {
   USER_LOGIN_REQUEST,
   USER_LOGIN_SUCCESS,
   USER_LOGIN_FAIL,
+  UPDATE_USER_QUIZ_REQUEST,
+  UPDATE_USER_QUIZ_SUCCESS,
+  UPDATE_USER_QUIZ_FAILED
 } from "../Constants/types";
 
 export const register = (
@@ -34,6 +37,22 @@ export const login = (
       return { loading: false, message: action.payload, success: true };
     case USER_LOGIN_FAIL:
       return { loading: false, message: action.payload, success: false };
+    default:
+      return state;
+  }
+};
+
+export const user = (
+  state = { loading: false, success: false, data: null },
+  action
+) => {
+  switch (action.type) {
+    case UPDATE_USER_QUIZ_REQUEST:
+      return { loading: true, success: false, data: action.payload };
+    case UPDATE_USER_QUIZ_SUCCESS:
+      return { loading: false, success: true, data: action.payload };
+    case UPDATE_USER_QUIZ_FAILED: 
+      return { loading: false, success: false, data: action.payload };
     default:
       return state;
   }

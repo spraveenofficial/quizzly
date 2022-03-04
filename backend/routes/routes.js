@@ -5,8 +5,9 @@ const app = Router();
 
 app.post("/signup", Controller.signup);
 app.post("/login", Controller.login);
-app.get("/completedquiz", Controller.updateUserCompletedQuiz);
+app.post("/completedquiz", middleware, Controller.updateUserCompletedQuiz);
 app.get("/profile", Controller.profile);
+app.get("/recent-quiz", middleware, Controller.recentQuiz);
 app.get("/verify", middleware, Controller.verifyUser);
 app.get("/leaderboard", middleware, Controller.leaderBoard);
 app.post("/create-quiz", middleware, Controller.createQuiz);

@@ -2,11 +2,17 @@ import { motion } from "framer-motion";
 import Container from "../../Components/Container";
 import "./style.css";
 import animation from "../../helpers/animation";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Button from "../../Components/Button";
+import { useEffect } from "react";
+import { updateUserQuiz } from "../../Redux/Actions/user";
 export default function Result({ quiz }) {
+  const dispatch = useDispatch();
   const { score, selectedOptions } = useSelector((state) => state.quiz);
-  const { marks, questions, title } = quiz[0];
+  const { marks, questions, title, id } = quiz[0];
+  useEffect(() => {
+    dispatch(updateUserQuiz(id, score, 120))
+  }, []);
   return (
     <Container>
       <motion.div
@@ -32,9 +38,7 @@ export default function Result({ quiz }) {
                     <Button
                       disabled={true}
                       isTrue={eachOption === eachQuiz.correctAnswer}
-                      isError={
-                        eachOption === selectedOptions[index].option
-                      }
+                      isError={eachOption === selectedOptions[index].option}
                       key={eachOption}
                       isFull={true}
                     >
