@@ -3,7 +3,10 @@ import Container from "../../Components/Container";
 import "./style.css";
 import animation from "../../helpers/animation";
 import { useSelector } from "react-redux";
-export default function Result() {
+import Button from "../../Components/Button";
+export default function Result({ quiz }) {
+  const { marks, questions, title } = quiz[0];
+  console.log(questions);
   const { score } = useSelector((state) => state.score);
   return (
     <Container>
@@ -13,8 +16,34 @@ export default function Result() {
         variants={animation}
         exit="hidden"
       >
-        <h1>This is Result</h1>
-        {score}
+        <div className="finalscore">
+          <h1 className="text-center">
+            You have Scored: {score} out of {marks}
+          </h1>
+        </div>
+        {questions.map((eachQuiz, index) => {
+          return (
+            <div key={index} className="questions">
+              <p>
+                {index + 1}.{eachQuiz.question}
+              </p>
+              <div className="options-answer">
+                {eachQuiz.options.map((eachOption) => {
+                  return (
+                    <Button
+                      disabled={true}
+                      isTrue={eachOption === eachQuiz.correctAnswer}
+                      key={eachOption}
+                      isFull={true}
+                    >
+                      {eachOption}
+                    </Button>
+                  );
+                })}
+              </div>
+            </div>
+          );
+        })}
       </motion.div>
     </Container>
   );

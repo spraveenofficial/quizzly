@@ -6,8 +6,7 @@ import { useState } from "react";
 import Toast from "../../Components/Toast";
 import { useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet";
-export default function Terms({ onNext, quiz, loading }) {
-  console.log(quiz);
+export default function Terms({ onNext, quiz }) {
   const navigate = useNavigate();
   const [isChecked, setChecked] = useState(false);
   const [toast, setToast] = useState(false);
@@ -62,8 +61,7 @@ export default function Terms({ onNext, quiz, loading }) {
             2: {quiz[0].timeRequired / 60} Minutes Required to Complete this
             Quiz.
             <br />
-            3: Each Question Contains{" "}
-            {quiz[0].marks / quiz[0].questions.length}
+            3: Each Question Contains {quiz[0].marks / quiz[0].questions.length}
             Marks.
             <br />
             4: You will be Redirected to Result Page after completion of Quiz.
