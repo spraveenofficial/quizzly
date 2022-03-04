@@ -2,6 +2,8 @@
     margin: 10px 0px;
 }
 
-.questions{
+.questionss{
     margin-bottom: 1rem;
+    border-bottom: 1px solid var(--white);
+    margin-bottom: 10px;
 }

@@ -1,13 +1,11 @@
-import { SCORE_CHANGE, SET_SCORE_NULL } from "../Constants/types";
+import {
+  SCORE_CHANGE,
+  SET_SCORE_NULL,
+  SELECT_ANSWER,
+} from "../Constants/types";
 const initialState = {
-  id: "",
-  title: "",
-  path: "",
-  timeRequired: "",
-  questions: [],
-  difficulty: "",
+  selectedOptions: [],
   score: 0,
-  loading: false,
 };
 
 export const score = (state = initialState, action) => {
@@ -16,6 +14,11 @@ export const score = (state = initialState, action) => {
       return { ...state, score: state.score + action.payload };
     case SET_SCORE_NULL:
       return { ...initialState };
+    case SELECT_ANSWER:
+      return {
+        ...state,
+        selectedOptions: [...state.selectedOptions, action.payload],
+      };
     default:
       return state;
   }

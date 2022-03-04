@@ -5,16 +5,17 @@ import animation from "../../helpers/animation";
 import { useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
 import { useDispatch, useSelector } from "react-redux";
-import { scoreChange } from "../../Redux/Actions/score";
+import { scoreChange, SelectAnswer } from "../../Redux/Actions/score";
 
 export default function Question({ onNext, quiz }) {
   const dispatch = useDispatch();
+  const { score } = useSelector((state) => state.score);
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const thisQuestion = quiz[0].questions[currentQuestion];
   const [totalTimer, setTotalTimer] = useState(quiz[0].timeRequired);
-  const { score } = useSelector((state) => state.score);
-  const nextQuestion = (e) => {
+  const nextQuestion = (e, id) => {
     const optionSelected = e.target.textContent;
+    dispatch(SelectAnswer(id, optionSelected));
     if (optionSelected === thisQuestion.correctAnswer) {
       dispatch(scoreChange(1));
     }
@@ -69,7 +70,7 @@ export default function Question({ onNext, quiz }) {
                 return (
                   <button
                     key={item}
-                    onClick={(e) => nextQuestion(e)}
+                    onClick={(e) => nextQuestion(e, thisQuestion.id)}
                     className="btn full-width mt-10 inherit-font opt-button"
                   >
                     {item}
