@@ -1,14 +1,14 @@
 import { combineReducers } from "redux";
 import { auth } from "./auth";
 import { register, login, user } from "./user";
-import { leaderBoard } from "./leaderboard";
+import { leaderboard } from "./leaderboard";
 import { quiz } from "./score";
 import { addQuiz, homePageQuiz, eachQuiz } from "./quiz";
 export default combineReducers({
   auth,
   register,
   login,
-  leaderBoard,
+  leaderboard,
   addQuiz,
   quiz,
   homePageQuiz,

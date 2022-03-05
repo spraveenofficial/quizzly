@@ -41,6 +41,15 @@
     max-width: 230px;
   }
 }
+@media (min-width:601px) and (max-width: 760px) {
+  .card-width{
+    max-width: 270px;
+    height: 400px;
+  }
+  .mobile-item{
+    max-width: 270px;
+  }
+}
 
 @media (min-width:100px) and (max-width: 500px){
   .card-width{

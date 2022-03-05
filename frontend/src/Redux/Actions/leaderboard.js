@@ -5,8 +5,7 @@ import {
 } from "../Constants/types";
 import axios from "axios";
 import baseUrl from "../../baseurl";
-import decrypt from "../../helpers/decrypt";
-export const leaderBoard = () => async (dispatch) => {
+export const leaderBoards = () => async (dispatch) => {
   try {
     dispatch({
       type: LEADERBOARD_REQUEST,

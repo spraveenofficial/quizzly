@@ -137,7 +137,7 @@ class MainController {
     return res.json({
       message: "Successfully Retrieved",
       statusCode: 200,
-      data: newArray,
+      data: newArray.sort((a, b) => b.totalScore - a.totalScore),
       success: true,
     });
   }
