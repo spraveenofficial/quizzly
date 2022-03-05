@@ -113,24 +113,27 @@ class MainController {
   }
   async leaderBoard(req, res) {
     const user = await userModel.find();
-    if (!user) {
+
+    const haveCompletedQuiz = user.filter((x) => x.completedQuiz.length >= 1);
+    if (!haveCompletedQuiz) {
       return res.json({
         message: "No user Found on LeaderBoard",
         success: false,
       });
     }
-    const haveCompletedQuiz = new Array(user.find((x) => x.completedQuiz));
+
     const newArray = haveCompletedQuiz.map((eachUser) => {
-      return {
-        name: eachUser.name,
-        email: eachUser.email,
-        totalScore: eachUser.completedQuiz.reduce(
-          (a, b) => Number(a) + Number(b["score"]),
-          0
-        ),
-      };
+      if (eachUser.completedQuiz) {
+        return {
+          name: eachUser.name,
+          email: eachUser.email,
+          totalScore: eachUser.completedQuiz.reduce(
+            (a, b) => Number(a) + Number(b["score"]),
+            0
+          ),
+        };
+      }
     });
-    // const encryptedData = await encryptionServices.encrypt(newArray);
     return res.json({
       message: "Successfully Retrieved",
       statusCode: 200,
