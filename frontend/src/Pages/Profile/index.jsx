@@ -6,14 +6,12 @@ import animation from "../../helpers/animation";
 import { motion, AnimatePresence } from "framer-motion";
 import { initialTabs as tabs } from "./items";
 import { useState } from "react";
-
-export default function Profile() {
+import Button from "../../Components/Button";
+export default function Profile({ onNext }) {
   const [selectedTab, setSelectedTab] = useState(tabs[0]);
   const { user } = useSelector((state) => state.auth);
   const rgx = new RegExp(/(\p{L}{1})\p{L}+/, "gu");
-
   let initials = [...user.name.matchAll(rgx)] || [];
-
   initials = (
     (initials.shift()?.[1] || "") + (initials.pop()?.[1] || "")
   ).toUpperCase();
@@ -36,11 +34,16 @@ export default function Profile() {
             <div className="badges">{initials}</div>
           </div>
           <div className="top-right">
-            <h2>{user.name}</h2>
+            <h3>{user.name}</h3>
             <p>{user.email}</p>
           </div>
         </div>
         <div className="window">
+          {user.isAdmin && (
+            <Button onClick={onNext} className="mb-10">
+              Create Quiz
+            </Button>
+          )}
           <nav>
             <ul className="flex">
               {tabs.map((item) => (

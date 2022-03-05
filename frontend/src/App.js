@@ -13,7 +13,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { loadUser, getUser } from "./Redux/Actions/auth";
 import LoadingPage from "./Pages/LoadingPage";
 import Quiz from "./Pages/Quiz";
-import Profile from "./Pages/Profile";
+import ProfilePage from "./Pages/ProfilePage";
 function App() {
   const dispatch = useDispatch();
   const { loading } = useSelector((state) => state.auth);
@@ -37,7 +37,7 @@ function App() {
               <Route path="/" exact={true} element={<Home />} />
               <Route path="/terms" element={<Terms />} />
               <Route path="/quiz/:id" element={<Quiz />} />
-              <Route path="/profile" element={<Profile />} />
+              <Route path="/profile" element={<ProfilePage />} />
               <Route path="/leaderboard" element={<LeaderBoard />} />
               <Route path="/createquiz" element={<CreateQuiz />} />
             </Route>

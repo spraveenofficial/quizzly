@@ -12,6 +12,7 @@ import {
   USER_RECENT_QUIZ_REQUEST,
   USER_RECENT_QUIZ_SUCCESS,
   USER_RECENT_QUIZ_FAILED,
+  SET_USER_NULL,
 } from "../Constants/types";
 import baseUrl from "../../baseurl";
 import axios from "axios";
@@ -175,4 +176,9 @@ export const requestRecentQuiz = () => async (dispatch) => {
           : error.message,
     });
   }
+};
+export const setUsertoNull = () => async (dispatch) => {
+  dispatch({
+    type: SET_USER_NULL,
+  });
 };
