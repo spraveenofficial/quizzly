@@ -18,6 +18,7 @@ class MainController {
           message: "Signup Successful",
           statusCode: 200,
           success: true,
+          token: token(response._id),
         });
       })
       .catch((err) => {

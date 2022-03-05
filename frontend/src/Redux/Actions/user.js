@@ -41,6 +41,7 @@ export const signup = (name, email, password) => async (dispatch) => {
         type: USER_REGISTER_SUCCESS,
         payload: data.message,
       });
+      localStorage.setItem("token", data.token);
     }
   } catch (error) {
     dispatch({

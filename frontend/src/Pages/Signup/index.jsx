@@ -7,10 +7,11 @@ import "./style.css";
 import Toast from "../../Components/Toast";
 import { useDispatch, useSelector } from "react-redux";
 import { signup } from "../../Redux/Actions/user";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Loader from "../../Components/Loader";
 import { signupValidate } from "../../helpers/validate";
 import { Helmet } from "react-helmet";
+import { loadUser } from "../../Redux/Actions/auth";
 export default function Signup() {
   const dispatch = useDispatch();
   const { loading, message, success } = useSelector((state) => state.register);
@@ -39,7 +40,12 @@ export default function Signup() {
       dispatch(signup(inputItem.name, inputItem.email, inputItem.password));
     }
   };
-
+  useEffect(() => {
+    success === true &&
+      setTimeout(() => {
+        dispatch(loadUser());
+      }, 1000);
+  }, [success, dispatch]);
   return (
     <Container>
       <Helmet>
