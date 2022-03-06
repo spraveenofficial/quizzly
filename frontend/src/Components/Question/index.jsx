@@ -5,7 +5,7 @@ import animation from "../../helpers/animation";
 import { useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
 import { useDispatch, useSelector } from "react-redux";
-import { scoreChange, SelectAnswer } from "../../Redux/Actions/score";
+import { scoreChange, SelectAnswer, SetTimer } from "../../Redux/Actions/score";
 
 export default function Question({ onNext, quiz }) {
   const dispatch = useDispatch();
@@ -34,6 +34,7 @@ export default function Question({ onNext, quiz }) {
         : setTotalTimer((prev) => prev - 1);
     }, 1000);
     return () => {
+      // dispatch(SetTimer(totalTimer));
       clearInterval(interval);
     };
   }, [totalTimer]);

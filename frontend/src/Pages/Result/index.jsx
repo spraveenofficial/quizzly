@@ -8,10 +8,12 @@ import { useEffect } from "react";
 import { updateUserQuiz } from "../../Redux/Actions/user";
 export default function Result({ quiz }) {
   const dispatch = useDispatch();
-  const { score, selectedOptions } = useSelector((state) => state.quiz);
-  const { marks, questions, title, id } = quiz[0];
+  const { score, selectedOptions } = useSelector(
+    (state) => state.quiz
+  );
+  const { marks, questions, title, id, timeRequired } = quiz[0];
   useEffect(() => {
-    dispatch(updateUserQuiz(id, score, 120))
+    dispatch(updateUserQuiz(id, score, 120));
   }, []);
   return (
     <Container>
