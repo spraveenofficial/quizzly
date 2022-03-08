@@ -202,14 +202,8 @@ class MainController {
   }
   async eachQuiz(req, res) {
     const id = req.params.id;
-    const quiz = await quizModel.findOne({ _id: id });
-    if (!quiz) {
-      res.json({
-        message: "Quiz Not Found",
-        success: false,
-        statusCode: 404,
-      });
-    } else {
+    try {
+      const quiz = await quizModel.findOne({ _id: id });
       const newArray = new Array(quiz);
       var results = await Promise.all(
         newArray.map(async (eachQuiz) => {
@@ -229,6 +223,12 @@ class MainController {
         success: true,
         statusCode: 200,
         data: results,
+      });
+    } catch (error) {
+      res.json({
+        message: "Quiz Not Found",
+        success: false,
+        statusCode: 404,
       });
     }
   }
